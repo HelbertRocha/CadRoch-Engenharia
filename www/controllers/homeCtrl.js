@@ -17,9 +17,8 @@ angular.module('docsys-phonegap.home', [])
   .controller('HomeCtrl', ['$scope', function($scope) {
 
     $scope.init = function() {
-
+      $scope.msg = 'hello';
     };
-
 
     $scope.init();
   }]);
