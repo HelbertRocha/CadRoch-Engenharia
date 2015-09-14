@@ -3,9 +3,26 @@
 </ion-header-bar>
 
 
-<ion-content class="has-header">
+<ion-content class="has-header" scroll="false">
 
-  <h1>Home View</h1>
+  <h1 id="loginText">Login</h1>
+
+  <div class="list">
+    <label class="item item-input">
+      <input type="text" placeholder="Name" id="name">
+    </label>
+    <label class="item item-input">
+      <input type="password" placeholder="Password" id="password">
+    </label>
+  </div>
+
+  <button class="button button-full button-positive" id="loginButton">
+    Login
+  </button>
+
+  <button class="button button-full button-positive" id="newUserButton" ng-click="showCreateNewUserView()">
+    New user
+  </button>
 
 </ion-content>
 

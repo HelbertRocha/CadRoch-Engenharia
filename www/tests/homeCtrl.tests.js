@@ -8,6 +8,7 @@ describe('docsys-phonegap.home module', function () {
 
   var scope, controller;
 
+  beforeEach(module('ionic'));
   beforeEach(module('ui.router'));
   beforeEach(module('docsys-phonegap.home'));
 
@@ -23,5 +24,6 @@ describe('docsys-phonegap.home module', function () {
   it('should pass!', function () {
     expect(controller).toBeDefined();
   });
+
 
 });

@@ -14,10 +14,26 @@ angular.module('docsys-phonegap.home', [])
       });
   }])
 
-  .controller('HomeCtrl', ['$scope', function($scope) {
+  .controller('HomeCtrl', ['$scope', '$ionicModal', function($scope, $ionicModal) {
 
     $scope.init = function() {
-      $scope.msg = 'hello';
+      $scope.createModalView();
+    };
+
+    $scope.createModalView = function() {
+      $ionicModal.fromTemplateUrl('../templates/createNewUserView.html', {
+        scope: $scope
+      }).then(function(modal) {
+        $scope.createNewUserView = modal;
+      });
+    };
+
+    $scope.showCreateNewUserView = function() {
+      $scope.createNewUserView.show();
+    };
+
+    $scope.hideCreateNewUserView = function() {
+      $scope.createNewUserView.hide();
     };
 
     $scope.init();
