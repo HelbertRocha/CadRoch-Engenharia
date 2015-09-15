@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('docsys-phonegap', [])
+angular.module('docsys-phonegap')
 
   .factory('configServices', [function() {
     this.devMode = true;

@@ -3,11 +3,9 @@
  */
 'use strict';
 
-angular.module('docsys-phonegap', [])
+angular.module('docsys-phonegap')
 
-.factory('authenticationServices', ['$resource', 'configServices', function($resource, configServices) {
-
-    var authenticationServices;
+  .factory('authenticationServices', [function() {
 
     /**
      * This function checks with the backend if the user is authenticated.
@@ -16,11 +14,9 @@ angular.module('docsys-phonegap', [])
      * @param picture
      * @returns {boolean} true if authenticated / false if not authenticated
      */
-    authenticationServices.isUserAuthenticated = function(username, password, picture) {
+    var isUserAuthenticated = function(username, password, picture) {
 
       var userIsAuthenticated = false;
-
-      var user = $resource()
 
       if (userIsAuthenticated) {
         return true;
@@ -28,6 +24,8 @@ angular.module('docsys-phonegap', [])
       return false;
     };
 
-    return authenticationServices;
+    return {
+      isUserAuthenticated: isUserAuthenticated
+    };
 
   }]);
