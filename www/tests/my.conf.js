@@ -20,7 +20,11 @@ module.exports = function(config) {
       '../lib/angular-ui-router/release/angular-ui-router.js',
       '../lib/ionic/js/ionic.bundle.js',
       '../lib/ngCordova/dist/ng-cordova.js',
+      '../lib/angular-resource/angular-resource.js',
+      '../app.js',
       '../controllers/*.js',
+      '../services/*.js',
+      '../models/*.js',
       '*tests.js'
     ],
 

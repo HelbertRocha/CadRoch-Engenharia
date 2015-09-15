@@ -6,35 +6,41 @@
 angular.module('docsys-phonegap', [])
 
   .factory('configServices', [function() {
-    var configServices;
-    var devMode = true;
+    this.devMode = true;
 
     /**
      * This function returns information about the developer server
      * Dev sever is located at: http://jsonplaceholder.typicode.com/
      */
-    this.getDevSever = function() {
+    var getDevSever = function() {
       return {
-        users: 'http://jsonplaceholder.typicode.com/users',
-        photos: 'http://jsonplaceholder.typicode.com/photos'
+        user: 'http://localhost:3000/user'
       };
     };
 
     /**
      * This function returns information about the live server
      */
-    this.getLiveServer = function() {
-
+    var getLiveServer = function() {
+      return {
+        user: 'liveServer'
+      };
     };
 
     /**
      * Public method for getting the url for dev server or live server
      */
-    configServices.getURL = function() {
-      if(devMode)
-        return this.getDevSever();
-      return this.getLiveServer();
+    var getURL = function() {
+      if(this.devMode)
+        return getDevSever();
+      return getLiveServer();
     };
 
-    return configServices;
+    /**
+     * Returns the public methods and variables for the configServices
+     */
+    return {
+      getURL: getURL,
+      devMode: this.devMode
+    };
   }]);
