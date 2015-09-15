@@ -9,5 +9,6 @@
     <orderEntry type="library" name="angular-protractor-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="jasmine-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="selenium-webdriver-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="docsys-phonegap-project node_modules" level="project" />
   </component>
 </module>

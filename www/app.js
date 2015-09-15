@@ -3,6 +3,7 @@
 angular.module('docsys-phonegap', [
   'ionic',
   'ngCordova',
+  'ngResource',
   'docsys-phonegap.home'
   ])
 
