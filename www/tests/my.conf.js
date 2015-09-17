@@ -15,16 +15,23 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      // lib first
       '../lib/angular/angular.js',
       '../lib/angular-mocks/angular-mocks.js',
       '../lib/angular-ui-router/release/angular-ui-router.js',
       '../lib/ionic/js/ionic.bundle.js',
       '../lib/ngCordova/dist/ng-cordova.js',
       '../lib/angular-resource/angular-resource.js',
+
+      // main app
       '../app.js',
+
+      // dependencies / modules
       '../controllers/*.js',
       '../services/*.js',
       '../models/*.js',
+
+      // tests
       '*tests.js'
     ],
 

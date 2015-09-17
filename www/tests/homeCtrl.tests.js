@@ -6,19 +6,29 @@
 
 describe('docsys-phonegap.home module', function () {
 
-  var scope, controller;
+  var scope, controller, mockAuthenticationServices, mockUserBackendApi;
 
   beforeEach(module('ionic'));
   beforeEach(module('ui.router'));
-  beforeEach(module('docsys-phonegap.home'));
+  beforeEach(module('docsys-phonegap'));
 
   beforeEach(inject(function ($rootScope, $controller) {
 
     scope = $rootScope.$new();
 
-    controller = $controller('HomeCtrl', {
-      $scope: scope
-    });
+    mockAuthenticationServices = {
+
+    };
+
+    mockUserBackendApi = {
+
+    };
+
+      controller = $controller('HomeCtrl', {
+      $scope: scope,
+      authenticationServices: mockAuthenticationServices,
+      userBackendApi: mockUserBackendApi
+      });
   }));
 
   it('should pass!', function () {

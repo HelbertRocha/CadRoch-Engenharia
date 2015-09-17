@@ -14,14 +14,17 @@ angular.module('docsys-phonegap')
      * @param picture
      * @returns {boolean} true if authenticated / false if not authenticated
      */
-    var isUserAuthenticated = function(username, password, picture) {
+    var isUserAuthenticated = function(userList, user) {
 
-      var userIsAuthenticated = false;
-
-      if (userIsAuthenticated) {
-        return true;
+      for (var i = 0; i <= userList.length-1; i++) {
+        if (userList[i]["username"] == user["username"]) {
+          if (userList[i]["password"] == user["password"]) {
+            return true;
+          }
+        }
       }
       return false;
+
     };
 
     return {

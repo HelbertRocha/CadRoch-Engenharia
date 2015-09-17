@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('docsys-phonegap.home', [])
+angular.module('docsys-phonegap')
 
   .config(['$stateProvider', function($stateProvider) {
     $stateProvider
@@ -14,7 +14,7 @@ angular.module('docsys-phonegap.home', [])
       });
   }])
 
-  .controller('HomeCtrl', ['$scope', '$ionicModal', function($scope, $ionicModal) {
+  .controller('HomeCtrl', ['$scope', '$ionicModal', 'authenticationServices', 'userBackendApi', function($scope, $ionicModal, authenticationServices, userBackendApi) {
 
     $scope.init = function() {
       $scope.createModalView();
