@@ -16,7 +16,9 @@
     </label>
   </div>
 
-  <button class="button button-full button-positive" id="loginButton">
+  <p id="errorMessage" style="color: red">{{ errorMessage }}</p>
+
+  <button class="button button-full button-positive" id="loginButton" ng-click="logIn()">
     Login
   </button>
 

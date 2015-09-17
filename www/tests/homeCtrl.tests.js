@@ -35,5 +35,6 @@ describe('docsys-phonegap.home module', function () {
     expect(controller).toBeDefined();
   });
 
-
+  it("spec name", function () {
+  });
 });

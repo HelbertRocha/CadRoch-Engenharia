@@ -17,6 +17,7 @@ angular.module('docsys-phonegap')
   .controller('HomeCtrl', ['$scope', '$ionicModal', 'authenticationServices', 'userBackendApi', function($scope, $ionicModal, authenticationServices, userBackendApi) {
 
     $scope.init = function() {
+      $scope.errorMessage = "";
       $scope.createModalView();
     };
 
@@ -34,6 +35,10 @@ angular.module('docsys-phonegap')
 
     $scope.hideCreateNewUserView = function() {
       $scope.createNewUserView.hide();
+    };
+
+    $scope.logIn = function() {
+      $scope.errorMessage = "Please fill out username and password";
     };
 
     $scope.init();

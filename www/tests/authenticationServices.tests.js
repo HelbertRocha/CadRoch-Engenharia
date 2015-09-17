@@ -92,7 +92,7 @@ describe('authenticationServices test', function () {
     expect(authenticationServicesResponse).toEqual(false);
   });
 
-  it("should return false if user enteret wrong password", function () {
+  it("should return false if user entered wrong password", function () {
     var notAuthenticatedFakeUser = {
       "id": 0,
       "username": "fakeUser0",

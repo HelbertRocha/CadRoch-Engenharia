@@ -59,5 +59,18 @@ describe('integration test of home view functionality', function() {
     var modalView = element(by.className('modal'));
     expect(modalView.isDisplayed()).toBeFalsy();
   });
+
+  it("should show error msg if login btn is pressed with empty username and password", function () {
+    element(by.id('loginButton')).click();
+
+    var errorMessage = element(by.id('errorMessage'));
+    expect(errorMessage.getText()).toContain('Please fill out username and password');
+  });
+
+  it("should hide error msg if login btn is not pressed", function () {
+
+    var errorMessage = element(by.id('errorMessage'));
+    expect(errorMessage.getText()).toEqual('');
+  });
 });
 

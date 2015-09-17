@@ -4,7 +4,6 @@ angular.module('docsys-phonegap', [
   'ionic',
   'ngCordova',
   'ngResource'
-  //'homeCtrl'
   ])
 
   .run(function($ionicPlatform) {
