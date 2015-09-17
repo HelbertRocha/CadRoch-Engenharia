@@ -8,6 +8,10 @@ describe('integration test of home view functionality', function() {
     browser.get('http://localhost:8100/#/');
   });
 
+  it("should have the correct url", function () {
+    expect(browser.getLocationAbsUrl()).toMatch('/');
+  });
+
   it('should have Docsys as title', function() {
 
     var title = element(by.className('title'));
@@ -64,13 +68,31 @@ describe('integration test of home view functionality', function() {
     element(by.id('loginButton')).click();
 
     var errorMessage = element(by.id('errorMessage'));
-    expect(errorMessage.getText()).toContain('Please fill out username and password');
+    expect(errorMessage.getAttribute('innerText')).toContain('Please fill out username and password');
   });
 
   it("should hide error msg if login btn is not pressed", function () {
 
     var errorMessage = element(by.id('errorMessage'));
-    expect(errorMessage.getText()).toEqual('');
+    expect(errorMessage.getAttribute('innerText')).toContain('');
   });
+
+  it("should hide error msg if login btn and username and password is filled out", function () {
+
+    element(by.id('name')).sendKeys('fakeUser');
+    element(by.id('password')).sendKeys('fakeUser');
+
+    var errorMessage = element(by.id('errorMessage'));
+    expect(errorMessage.getAttribute('innerText')).toContain('');
+  });
+
+  /*it("should redirect user to correct screen", function () {
+
+    element(by.id('name')).sendKeys('Wyatt.McLaughlin28');
+    element(by.id('password')).sendKeys('lc1orzdW_aSIZPx');
+
+    var title = element(by.className('title'));
+    expect(title.getText()).toContain('Activities');
+  });*/
 });
 

@@ -5,5 +5,5 @@
 angular.module('docsys-phonegap')
 
   .factory('userBackendApi', ['configServices', '$resource', function(configServices, $resource) {
-    return $resource(configServices.getURL());
+    return $resource('http://localhost:3000/user');
   }]);

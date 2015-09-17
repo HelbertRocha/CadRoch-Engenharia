@@ -9,14 +9,16 @@
 
   <div class="list">
     <label class="item item-input">
-      <input type="text" placeholder="Name" id="name">
+      <input type="text" placeholder="Name" id="name" ng-model="user.username">
     </label>
     <label class="item item-input">
-      <input type="password" placeholder="Password" id="password">
+      <input type="password" placeholder="Password" id="password" ng-model="user.password">
     </label>
   </div>
 
-  <p id="errorMessage" style="color: red">{{ errorMessage }}</p>
+  <div ng-hide="hideErrorMessage" class="ng-hide">
+    <p id="errorMessage" style="color: red">{{ errorMessage }}</p>
+  </div>
 
   <button class="button button-full button-positive" id="loginButton" ng-click="logIn()">
     Login
