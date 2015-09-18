@@ -18,14 +18,21 @@ angular.module('docsys-phonegap')
 
     $scope.init = function() {
       $scope.userIsAuthorised = false;
-      $scope.errorMessage = "";
-      $scope.hideErrorMessage = true;
       $scope.userList = {};
       $scope.user = {};
-      $scope.createModalView();
+      $scope.newuser = {};
+      initErrorMessages();
+      createModalView();
     };
 
-    $scope.createModalView = function() {
+    function initErrorMessages() {
+      $scope.hideErrorMessage = true;
+      $scope.errorMessage = "";
+      $scope.modalHideErrorMessage = true;
+      $scope.modalErrorMessage = "";
+    };
+
+    function createModalView() {
       $ionicModal.fromTemplateUrl('../templates/createNewUserView.html', {
         scope: $scope
       }).then(function(modal) {
@@ -35,15 +42,28 @@ angular.module('docsys-phonegap')
 
     $scope.showCreateNewUserView = function() {
       $scope.createNewUserView.show();
+
+      // Clearing possible error messages on home view
+      $scope.showErrorMessage("", false);
+      $scope.hideErrorMessage = true;
     };
 
     $scope.hideCreateNewUserView = function() {
       $scope.createNewUserView.hide();
+
+      // Clearing possible error messages on home view
+      $scope.showErrorMessage("", true);
+      $scope.modalHideErrorMessage= true;
     };
 
-    $scope.showErrorMessage = function(message) {
-      $scope.hideErrorMessage = false;
-      $scope.errorMessage = message;
+    $scope.showErrorMessage = function(message, modalError) {
+      if(modalError) {
+        $scope.modalHideErrorMessage = false;
+        $scope.modalErrorMessage = message;
+      } else {
+        $scope.hideErrorMessage = false;
+        $scope.errorMessage = message;
+      }
     };
 
     $scope.logIn = function() {
@@ -55,11 +75,21 @@ angular.module('docsys-phonegap')
             $location.path('/activity');
           }
           else{
-            $scope.showErrorMessage("Username or password is not correct");
+            $scope.showErrorMessage("Username or password is not correct", false);
           }
         })
       } else {
-        $scope.showErrorMessage("Please fill out username and password");
+        $scope.showErrorMessage("Please fill out username and password", false);
+      }
+    };
+
+    $scope.createNewUser = function() {
+      if($scope.newuser.username || $scope.newuser.password || $scope.newuser.name || $scope.newuser.surename)
+      {
+        // Call save on userBackendApi and close modal view
+        userBackendApi.save('plapla');
+      } else {
+        $scope.showErrorMessage('Please fill all fields', true);
       }
     };
 

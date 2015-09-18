@@ -95,5 +95,15 @@ describe('integration test of home view functionality', function() {
 
     expect(browser.getLocationAbsUrl()).toMatch('/activity');
   });
+
+  it("should clear error message correct, if user gets error msg and changes view and back again", function () {
+
+    element(by.id('loginButton')).click();
+    element(by.id('newUserButton')).click();
+    element(by.id('cancelButtonModalView')).click();
+
+    var errorMessage = element(by.id('errorMessage'));
+    expect(errorMessage.isDisplayed()).toBeFalsy();
+  });
 });
 

@@ -38,6 +38,9 @@ describe('docsys-phonegap.home module', function () {
       query: function() {
         queryDeferred = $q.defer();
         return {$promise: queryDeferred.promise};
+      },
+      save: function () {
+
       }
     };
 
@@ -140,5 +143,17 @@ describe('docsys-phonegap.home module', function () {
     scope.$digest();
 
     expect(mockAuthenticationServices.isUserAuthenticated).toHaveBeenCalledWith(fakeUser, scope.user);
+  });
+
+
+  /**
+   * Elaborate more on these tests
+   */
+  it("should call post when a user gets created", function () {
+    spyOn(mockUserBackendApi, 'save').and.callThrough();
+
+    scope.createNewUser();
+
+    expect(mockUserBackendApi.save).toHaveBeenCalled();
   });
 });

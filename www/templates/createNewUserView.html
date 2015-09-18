@@ -11,18 +11,27 @@
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Username</span>
-          <input type="text" id="usernameModelView">
+          <input type="text" id="usernameModalView">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="text" id="passwordModalView">
         </label>
         <label class="item item-input">
           <span class="input-label">Name</span>
-          <input type="text" id="nameModelView">
+          <input type="text" id="nameModalView">
         </label>
         <label class="item item-input">
           <span class="input-label">Surname</span>
-          <input type="text" id="surnameModelView">
+          <input type="text" id="surnameModalView">
         </label>
-        <button class="button button-full button-positive" type="submit" id="pictureButtonModelView">Take picture</button>
-        <button class="button button-full button-positive" type="submit" id="createButtonModelView">Create</button>
+
+        <div ng-hide="modalHideErrorMessage" class="ng-hide">
+          <p id="modalErrorMessage" style="color: red">{{ modalErrorMessage }}</p>
+        </div>
+
+        <button class="button button-full button-positive" type="submit" id="pictureButtonModalView">Take picture</button>
+        <button class="button button-full button-positive" type="submit" id="createButtonModalView" ng-click="createNewUser()">Create</button>
       </div>
     </form>
   </ion-content>

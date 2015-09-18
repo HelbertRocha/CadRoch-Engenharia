@@ -15,32 +15,64 @@ describe('integration test of home view functionality', function() {
 
   it("should have a username field", function () {
 
-      var usernameInputField = element(by.id('usernameModelView'));
+      var usernameInputField = element(by.id('usernameModalView'));
       expect(usernameInputField.isPresent()).toBeTruthy();
+  });
+
+  it("should have password field", function () {
+
+    var cancelButton = element(by.id('passwordModalView'));
+    expect(cancelButton.isPresent()).toBeTruthy();
   });
 
   it("should have a name field", function () {
 
-    var nameInputField = element(by.id('nameModelView'));
+    var nameInputField = element(by.id('nameModalView'));
     expect(nameInputField.isPresent()).toBeTruthy();
   });
 
   it("should have a surname field", function () {
 
-    var surnameInputField = element(by.id('surnameModelView'));
+    var surnameInputField = element(by.id('surnameModalView'));
     expect(surnameInputField.isPresent()).toBeTruthy();
   });
 
   it("should have a take picture button", function () {
 
-    var pictureButton = element(by.id('pictureButtonModelView'));
+    var pictureButton = element(by.id('pictureButtonModalView'));
     expect(pictureButton.isPresent()).toBeTruthy();
   });
 
   it("should have a create user button", function () {
 
-    var createButton = element(by.id('createButtonModelView'));
+    var createButton = element(by.id('createButtonModalView'));
     expect(createButton.isPresent()).toBeTruthy();
+  });
+
+  it("should have a cancel button", function () {
+
+    var cancelButton = element(by.id('cancelButtonModalView'));
+    expect(cancelButton.isPresent()).toBeTruthy();
+  });
+
+  it("should show error msg if create new user form isn't filled out correct", function () {
+
+    element(by.id('usernameModalView')).sendKeys('fakeuser');
+    element(by.id('nameModalView')).sendKeys('fakeusername');
+    element(by.id('createButtonModalView')).click();
+
+    var errorMessage = element(by.id('modalErrorMessage'));
+    expect(errorMessage.getAttribute('innerText')).toContain('Please fill all fields');
+  });
+
+  it("should clear error message correct, if user gets error msg and changes view and back again", function () {
+
+    element(by.id('createButtonModalView')).click();
+    element(by.id('cancelButtonModalView')).click();
+    element(by.id('newUserButton')).click();
+
+    var modalErrorMessage = element(by.id('modalErrorMessage'));
+    expect(modalErrorMessage.isDisplayed()).toBeFalsy();
   });
 });
 
