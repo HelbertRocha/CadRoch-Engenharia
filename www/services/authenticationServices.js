@@ -23,7 +23,6 @@ angular.module('docsys-phonegap')
         }
       }
       return false;
-
     };
 
     return {

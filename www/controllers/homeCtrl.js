@@ -17,8 +17,10 @@ angular.module('docsys-phonegap')
   .controller('HomeCtrl', ['$location', '$scope', '$ionicModal', 'authenticationServices', 'userBackendApi', function($location, $scope, $ionicModal, authenticationServices, userBackendApi) {
 
     $scope.init = function() {
+      $scope.userIsAuthorised = false;
       $scope.errorMessage = "";
       $scope.hideErrorMessage = true;
+      $scope.userList = {};
       $scope.user = {};
       $scope.createModalView();
     };
@@ -46,11 +48,16 @@ angular.module('docsys-phonegap')
 
     $scope.logIn = function() {
       if($scope.user.username || $scope.user.password) {
-        var userList = userBackendApi.query(function() {
-          if(authenticationServices.isUserAuthenticated(userList, $scope.user)) {
+        userBackendApi.query().$promise.then(function(userList) {
+          $scope.userList = userList;
+          if(authenticationServices.isUserAuthenticated($scope.userList, $scope.user)) {
+            $scope.userIsAuthorised = true;
             $location.path('/activity');
-          }});
-        $scope.showErrorMessage("User or password is not correct");
+          }
+          else{
+            $scope.showErrorMessage("Username or password is not correct");
+          }
+        })
       } else {
         $scope.showErrorMessage("Please fill out username and password");
       }

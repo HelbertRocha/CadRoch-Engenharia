@@ -81,18 +81,19 @@ describe('integration test of home view functionality', function() {
 
     element(by.id('name')).sendKeys('fakeUser');
     element(by.id('password')).sendKeys('fakeUser');
+    element(by.id('loginButton')).click();
 
     var errorMessage = element(by.id('errorMessage'));
     expect(errorMessage.getAttribute('innerText')).toContain('');
   });
 
-  /*it("should redirect user to correct screen", function () {
+  it("should redirect user to correct screen", function () {
 
-    element(by.id('name')).sendKeys('Wyatt.McLaughlin28');
-    element(by.id('password')).sendKeys('lc1orzdW_aSIZPx');
+    element(by.id('name')).sendKeys('Allene66');
+    element(by.id('password')).sendKeys('aqJnUjd0zPMImps');
+    element(by.id('loginButton')).click();
 
-    var title = element(by.className('title'));
-    expect(title.getText()).toContain('Activities');
-  });*/
+    expect(browser.getLocationAbsUrl()).toMatch('/activity');
+  });
 });
 

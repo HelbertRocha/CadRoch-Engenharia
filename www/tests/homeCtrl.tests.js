@@ -6,22 +6,39 @@
 
 describe('docsys-phonegap.home module', function () {
 
-  var scope, controller, mockAuthenticationServices, mockUserBackendApi;
+  var scope, controller, mockAuthenticationServices, mockUserBackendApi, $q, $rootScope, queryDeferred;
+  var fakeUser =
+    {
+      "id": 0,
+      "username": "fakeUser0",
+      "password": "password",
+      "firstname": "Frederick",
+      "lastname": "Pouros",
+      "picture": "https://s3.amazonaws.com/uifaces/faces/twitter/y2graphic/128.jpg",
+      "CPF": 252373492
+    };
 
   beforeEach(module('ionic'));
   beforeEach(module('ui.router'));
   beforeEach(module('docsys-phonegap'));
 
-  beforeEach(inject(function ($rootScope, $controller) {
+  beforeEach(inject(function(_$q_, _$rootScope_) {
+    $q = _$q_;
+    $rootScope = _$rootScope_;
+  }));
 
+  beforeEach(inject(function ($controller) {
     scope = $rootScope.$new();
 
     mockAuthenticationServices = {
-
+      isUserAuthenticated: function(userList, user) {  }
     };
 
     mockUserBackendApi = {
-
+      query: function() {
+        queryDeferred = $q.defer();
+        return {$promise: queryDeferred.promise};
+      }
     };
 
       controller = $controller('HomeCtrl', {
@@ -31,10 +48,97 @@ describe('docsys-phonegap.home module', function () {
       });
   }));
 
+  var $httpBackend;
+  beforeEach(inject(function($injector) {
+    $httpBackend = $injector.get('$httpBackend');
+    $httpBackend.whenGET('templates/homeView.html').respond(200, '');
+    $httpBackend.whenGET('templates/activityView.html').respond(200, '');
+    $httpBackend.whenGET('../templates/createNewUserView.html').respond(200, '');
+  }));
+
   it('should pass!', function () {
     expect(controller).toBeDefined();
   });
 
-  it("spec name", function () {
+  it("should call init function and update $scope", function () {
+    expect(scope.errorMessage).toEqual('');
+  });
+
+  it("should show error msg when function is called", function () {
+    scope.showErrorMessage("fake error msg");
+
+    expect(scope.errorMessage).toEqual("fake error msg");
+  });
+
+  it("should show error msg when user clicks login with empty username and password", function () {
+    scope.logIn();
+
+    var errorMsg = "Please fill out username and password";
+    expect(scope.errorMessage).toEqual(errorMsg);
+  });
+
+  it("should call query on UserBackendApi when user tries to login", function () {
+    spyOn(mockUserBackendApi, 'query').and.callThrough();
+    scope.user.username = "faker";
+    scope.user.password = "faker";
+
+    scope.logIn();
+
+    queryDeferred.resolve(fakeUser);
+    $rootScope.$apply();
+
+    expect(mockUserBackendApi.query).toHaveBeenCalled();
+  });
+
+  it("should call authenticationServices when user tries to login", function () {
+    spyOn(mockAuthenticationServices, 'isUserAuthenticated').and.callThrough();
+    scope.user.username = "faker";
+    scope.user.password = "faker";
+
+    scope.logIn();
+
+    queryDeferred.resolve(fakeUser);
+    scope.$digest();
+
+    expect(mockAuthenticationServices.isUserAuthenticated).toHaveBeenCalled();
+  });
+
+  it("should authorize the user if the password and username is correct", function () {
+    spyOn(mockAuthenticationServices, 'isUserAuthenticated').and.returnValue(true);
+    scope.user.username = "fakeUser0";
+    scope.user.password = "password";
+
+    scope.logIn();
+
+    queryDeferred.resolve(fakeUser);
+    scope.$digest();
+
+    expect(scope.userIsAuthorised).toEqual(true);
+  });
+
+  it("should authorize the user if the password and username is correct", function () {
+    spyOn(mockAuthenticationServices, 'isUserAuthenticated').and.returnValue(false);
+    scope.user.username = "badUser";
+    scope.user.password = "badPassword";
+
+    scope.logIn();
+
+    queryDeferred.resolve(fakeUser);
+    scope.$digest();
+
+    expect(scope.userIsAuthorised).toEqual(false);
+  });
+
+  it("should authorize the user if the password and username is correct", function () {
+    spyOn(mockAuthenticationServices, 'isUserAuthenticated');
+    scope.user.username = "fakeUser0";
+    scope.user.password = "password";
+
+    scope.logIn();
+
+    queryDeferred.resolve(fakeUser);
+    scope.$digest();
+
+    expect(mockAuthenticationServices.isUserAuthenticated).toHaveBeenCalledWith(fakeUser, scope.user);
   });
 });
