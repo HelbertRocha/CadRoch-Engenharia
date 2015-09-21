@@ -95,7 +95,7 @@ angular.module('docsys-phonegap')
       if(authenticationServices.autehnticateNewUser($scope.newuser))
       {
         // Call save on userBackendApi and close modal view
-        userBackendApi.save('plapla');
+        userBackendApi.save($scope.newuser);
         $scope.hideCreateNewUserView();
       } else {
         $scope.showErrorMessage('Please fill all fields', true);

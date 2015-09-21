@@ -31,13 +31,13 @@ describe('integration test of home view functionality', function() {
 
   it("should have a name field", function () {
 
-    var nameInputField = element(by.id('nameModalView'));
+    var nameInputField = element(by.id('firstnameModalView'));
     expect(nameInputField.isPresent()).toBeTruthy();
   });
 
   it("should have a surname field", function () {
 
-    var surnameInputField = element(by.id('surnameModalView'));
+    var surnameInputField = element(by.id('lastnameModalView'));
     expect(surnameInputField.isPresent()).toBeTruthy();
   });
 
@@ -62,7 +62,7 @@ describe('integration test of home view functionality', function() {
   it("should show error msg if create new user form isn't filled out correct", function () {
 
     element(by.id('usernameModalView')).sendKeys('fakeuser');
-    element(by.id('nameModalView')).sendKeys('fakeusername');
+    element(by.id('firstnameModalView')).sendKeys('fakeusername');
     element(by.id('createButtonModalView')).click();
 
     var errorMessage = element(by.id('modalErrorMessage'));
@@ -90,8 +90,8 @@ describe('integration test of home view functionality', function() {
 
     element(by.id('usernameModalView')).sendKeys('fake username');
     element(by.id('passwordModalView')).sendKeys('fake password');
-    element(by.id('nameModalView')).sendKeys('fake name');
-    element(by.id('surnameModalView')).sendKeys('fake surname');
+    element(by.id('firstnameModalView')).sendKeys('fake name');
+    element(by.id('lastnameModalView')).sendKeys('fake surname');
 
     element(by.id('createButtonModalView')).click();
 

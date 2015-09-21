@@ -159,7 +159,7 @@ describe('docsys-phonegap.home module', function () {
   it("should not create post when new user info is not filled out", function () {
     spyOn(mockUserBackendApi, 'save').and.callThrough();
 
-    scope.newuser = { usernamer: "user", name: "name", surename: "surename" };
+    scope.newuser = { usernamer: "user", firstname: "name", lastname: "lastname" };
 
     scope.createNewUser();
 
@@ -167,14 +167,26 @@ describe('docsys-phonegap.home module', function () {
   });
 
   it("should call post when a user gets created", function () {
-    spyOn(mockUserBackendApi, 'save').and.callThrough();
+    spyOn(mockUserBackendApi, 'save');
     spyOn(mockAuthenticationServices, 'autehnticateNewUser').and.returnValue(true);
     spyOn(scope, 'hideCreateNewUserView').and.returnValue(true);
 
-    scope.newuser = { usernamer: "user", password: "password", name: "name", surename: "surename" };
+    scope.newuser = { usernamer: "user", password: "password", firstname: "name", lastname: "lastname" };
 
     scope.createNewUser();
 
     expect(mockUserBackendApi.save).toHaveBeenCalled();
+  });
+
+  it("should call post when a user gets created", function () {
+    spyOn(mockUserBackendApi, 'save').and.callThrough();
+    spyOn(mockAuthenticationServices, 'autehnticateNewUser').and.returnValue(true);
+    spyOn(scope, 'hideCreateNewUserView').and.returnValue(true);
+
+    scope.newuser = { usernamer: "user", password: "password", firstname: "name", lastname: "lastname", picture: "blablabla" };
+
+    scope.createNewUser();
+
+    expect(mockUserBackendApi.save).toHaveBeenCalledWith(scope.newuser);
   });
 });

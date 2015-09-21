@@ -87,11 +87,10 @@ describe('integration test of home view functionality', function() {
     expect(errorMessage.getAttribute('innerText')).toContain('');
   });
 
-    // @todo update this test to mach the backend
   it("should redirect user to correct screen", function () {
 
-    element(by.id('name')).sendKeys('Kari_Haley5');
-    element(by.id('password')).sendKeys('PDulnR6B1zNUKfR');
+    element(by.id('name')).sendKeys('fakeUser0');
+    element(by.id('password')).sendKeys('fakePassword');
     element(by.id('loginButton')).click();
 
     expect(browser.getLocationAbsUrl()).toMatch('/activity');

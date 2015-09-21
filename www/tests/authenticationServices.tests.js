@@ -114,7 +114,7 @@ describe('authenticationServices test', function () {
       "username": "fakeUser0",
       "password": "password",
       "name": "Frederick",
-      "surename": "Pouros"
+      "lastname": "Pouros"
     };
 
     var authenticationServicesResponse = authenticationServices.autehnticateNewUser(fakeUser);
@@ -127,7 +127,7 @@ describe('authenticationServices test', function () {
     var fakeUser = {
       "username": "fakeUser0",
       "name": "Frederick",
-      "surename": "Pouros"
+      "lastname": "Pouros"
     };
 
     var authenticationServicesResponse = authenticationServices.autehnticateNewUser(fakeUser);

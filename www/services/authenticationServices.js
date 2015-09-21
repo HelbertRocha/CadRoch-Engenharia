@@ -27,7 +27,7 @@ angular.module('docsys-phonegap')
 
 
     var autehnticateNewUser = function(user) {
-      if(user.username && user.password && user.name && user.surename)
+      if(user.username && user.password && user.name && user.lastname)
       {
         return true;
       }
