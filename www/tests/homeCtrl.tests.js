@@ -31,7 +31,8 @@ describe('docsys-phonegap.home module', function () {
     scope = $rootScope.$new();
 
     mockAuthenticationServices = {
-      isUserAuthenticated: function(userList, user) {  }
+      isUserAuthenticated: function(userList, user) {  },
+      autehnticateNewUser: function(user) { }
     };
 
     mockUserBackendApi = {
@@ -145,12 +146,32 @@ describe('docsys-phonegap.home module', function () {
     expect(mockAuthenticationServices.isUserAuthenticated).toHaveBeenCalledWith(fakeUser, scope.user);
   });
 
+  it("should not create post when new user info is not filled out", function () {
+    spyOn(mockUserBackendApi, 'save').and.callThrough();
 
-  /**
-   * Elaborate more on these tests
-   */
+    scope.newuser = {};
+
+    scope.createNewUser();
+
+    expect(mockUserBackendApi.save).not.toHaveBeenCalled();
+  });
+
+  it("should not create post when new user info is not filled out", function () {
+    spyOn(mockUserBackendApi, 'save').and.callThrough();
+
+    scope.newuser = { usernamer: "user", name: "name", surename: "surename" };
+
+    scope.createNewUser();
+
+    expect(mockUserBackendApi.save).not.toHaveBeenCalled();
+  });
+
   it("should call post when a user gets created", function () {
     spyOn(mockUserBackendApi, 'save').and.callThrough();
+    spyOn(mockAuthenticationServices, 'autehnticateNewUser').and.returnValue(true);
+    spyOn(scope, 'hideCreateNewUserView').and.returnValue(true);
+
+    scope.newuser = { usernamer: "user", password: "password", name: "name", surename: "surename" };
 
     scope.createNewUser();
 

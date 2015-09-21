@@ -6,6 +6,10 @@
  * Integration test file for home view controller
  */
 
+var width = 400;
+var height = 800;
+browser.driver.manage().window().setSize(width, height);
+
 describe('integration test of home view functionality', function() {
 
   beforeEach(function() {
@@ -73,6 +77,25 @@ describe('integration test of home view functionality', function() {
 
     var modalErrorMessage = element(by.id('modalErrorMessage'));
     expect(modalErrorMessage.isDisplayed()).toBeFalsy();
+  });
+
+  it("should close modal view when clicking on close button", function () {
+
+    element(by.id('cancelButtonModalView')).click();
+
+    expect(element(by.id('createButtonModalView')).isDisplayed()).toBeFalsy();
+  });
+
+  it("should close modal view if input fields is filled out", function () {
+
+    element(by.id('usernameModalView')).sendKeys('fake username');
+    element(by.id('passwordModalView')).sendKeys('fake password');
+    element(by.id('nameModalView')).sendKeys('fake name');
+    element(by.id('surnameModalView')).sendKeys('fake surname');
+
+    element(by.id('createButtonModalView')).click();
+
+    expect(element(by.id('createButtonModalView')).isDisplayed()).toBeFalsy();
   });
 });
 

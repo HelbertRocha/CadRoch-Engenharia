@@ -25,8 +25,18 @@ angular.module('docsys-phonegap')
       return false;
     };
 
+
+    var autehnticateNewUser = function(user) {
+      if(user.username && user.password && user.name && user.surename)
+      {
+        return true;
+      }
+      return false;
+    };
+
     return {
-      isUserAuthenticated: isUserAuthenticated
+      isUserAuthenticated: isUserAuthenticated,
+      autehnticateNewUser: autehnticateNewUser
     };
 
   }]);

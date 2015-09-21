@@ -107,4 +107,31 @@ describe('authenticationServices test', function () {
 
     expect(authenticationServicesResponse).toEqual(false);
   });
+
+  it("should return true if all input fields is filled out in create new user view", function () {
+
+    var fakeUser = {
+      "username": "fakeUser0",
+      "password": "password",
+      "name": "Frederick",
+      "surename": "Pouros"
+    };
+
+    var authenticationServicesResponse = authenticationServices.autehnticateNewUser(fakeUser);
+
+    expect(authenticationServicesResponse).toEqual(true);
+  });
+
+  it("should return false if not all input fields is filled out in create new user view", function () {
+
+    var fakeUser = {
+      "username": "fakeUser0",
+      "name": "Frederick",
+      "surename": "Pouros"
+    };
+
+    var authenticationServicesResponse = authenticationServices.autehnticateNewUser(fakeUser);
+
+    expect(authenticationServicesResponse).toEqual(false);
+  });
 });

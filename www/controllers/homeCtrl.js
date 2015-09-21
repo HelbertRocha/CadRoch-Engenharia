@@ -66,8 +66,16 @@ angular.module('docsys-phonegap')
       }
     };
 
+    /**
+     * This function first checks if the user has filled out the username and password fields
+     * after get make at GET request to the userBackendApi. On success GET, it then uses the
+     * authenticationServices to check if the given user is authenticated.
+     * If the check passes it redirects the user to the activity screen else it shows the
+     * "username or password is not correct".
+     * @todo make a error msg for unsuccessful GET request.
+     */
     $scope.logIn = function() {
-      if($scope.user.username || $scope.user.password) {
+      if($scope.user.username && $scope.user.password) {
         userBackendApi.query().$promise.then(function(userList) {
           $scope.userList = userList;
           if(authenticationServices.isUserAuthenticated($scope.userList, $scope.user)) {
@@ -84,10 +92,11 @@ angular.module('docsys-phonegap')
     };
 
     $scope.createNewUser = function() {
-      if($scope.newuser.username || $scope.newuser.password || $scope.newuser.name || $scope.newuser.surename)
+      if(authenticationServices.autehnticateNewUser($scope.newuser))
       {
         // Call save on userBackendApi and close modal view
         userBackendApi.save('plapla');
+        $scope.hideCreateNewUserView();
       } else {
         $scope.showErrorMessage('Please fill all fields', true);
       }
