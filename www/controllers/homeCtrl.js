@@ -35,7 +35,7 @@ angular.module('docsys-phonegap')
     };
 
     function createModalView() {
-      $ionicModal.fromTemplateUrl('../templates/createNewUserView.html', {
+      $ionicModal.fromTemplateUrl('templates/createNewUserView.html', {
         scope: $scope
       }).then(function(modal) {
         $scope.createNewUserView = modal;

@@ -14,14 +14,24 @@ angular.module('docsys-phonegap')
       });
   }])
 
-  .controller('ActivityCtrl', ['$scope', 'userServices', function($scope, userServices) {
+  .controller('ActivityCtrl', ['$scope', 'userServices', '$cordovaGeolocation', function($scope, userServices, $cordovaGeolocation) {
     $scope.init = function() {
       $scope.user = userServices.getUser();
       $scope.date = new Date();
     };
 
     $scope.goToActivity = function(activity) {
-      console.log(activity);
+
+      var geolocationOptions = {timeout: 10000, enableHighAccuracy: false};
+      $cordovaGeolocation
+        .getCurrentPosition(geolocationOptions)
+        .then(function (position) {
+          console.log("user is", activity, " at");
+          console.log("lat", position.coords.latitude);
+          console.log("long", position.coords.longitude);
+        }, function(err) {
+          // error
+        });
     };
 
     $scope.init();
