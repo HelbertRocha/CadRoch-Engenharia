@@ -22,17 +22,15 @@ describe('integration test of activity view functionality', function() {
     expect(browser.getLocationAbsUrl()).toMatch('/activity');
   });
 
-  it("should have user information field", function () {
+  it("should have undefined user information field if no user is logged in", function () {
 
-    var userInformationFireld = element(by.id('userInformation'));
-
+    var userInformationFireld = element(by.id('undefinedUserInformation'));
     expect(userInformationFireld.isDisplayed()).toBeTruthy();
   });
 
   it("should have a list with activities", function () {
 
     var activityList = element(by.id('activityList'));
-
     expect(activityList.isDisplayed()).toBeTruthy();
   });
 
@@ -40,7 +38,6 @@ describe('integration test of activity view functionality', function() {
 
     element.all(by.className('item-icon-left')).then(function(items) {
       expect(items.length).toBe(4);
-      //expect(items[0].getText()).toBe('First');
     });
   });
 
@@ -52,6 +49,24 @@ describe('integration test of activity view functionality', function() {
       expect(items[2].getText()).toBe('Check in after lunch');
       expect(items[3].getText()).toBe('Check out from work');
     });
+  });
+
+  it("should show John Doe user if now user is logged in", function () {
+
+    var nameLabel = element(by.className('nameLabel'));
+    expect(nameLabel.getText()).toBe('John Doe');
+  });
+
+  it("should have user information field if user is logged in", function () {
+
+    browser.get('http://localhost:8100/#/');
+
+    element(by.id('name')).sendKeys('fakeUser0');
+    element(by.id('password')).sendKeys('fakePassword');
+    element(by.id('loginButton')).click();
+
+    var nameLabel = element(by.className('nameLabel'));
+    expect(nameLabel.getText()).not.toBe('John Doe');
   });
 });
 

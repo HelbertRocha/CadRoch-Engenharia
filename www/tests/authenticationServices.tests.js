@@ -4,7 +4,8 @@
 
 describe('authenticationServices test', function () {
 
-  var authenticationServices, fakeUserList, mockUserServices;
+  var authenticationServices, fakeUserList, mockUserServices, fakeUserAuthenticated, fakeUserNotAuthenticated;
+  var fakeUserNotAuthenticatedBadPassword, fakeNewUser, fakeNewBadUser;
 
   beforeEach(module('ngResource'));
   beforeEach(module('docsys-phonegap'));
@@ -66,15 +67,9 @@ describe('authenticationServices test', function () {
         "picture": "https://s3.amazonaws.com/uifaces/faces/twitter/colirpixoil/128.jpg",
         "CPF": 252373492
       }
-    ]
-  });
+    ];
 
-  it('should pass!', function () {
-    expect(authenticationServices).toBeDefined();
-  });
-
-  it("should return true if the user is found in the list", function () {
-    var fakeUser = {
+    fakeUserAuthenticated = {
       "id": 0,
       "username": "fakeUser0",
       "password": "password",
@@ -84,29 +79,17 @@ describe('authenticationServices test', function () {
       "CPF": 252373492
     };
 
-    var authenticationServicesResponse = authenticationServices.isUserAuthenticated(fakeUserList, fakeUser);
-
-    expect(authenticationServicesResponse).toEqual(true);
-  });
-
-  it("should return false if the username is not found in the list", function () {
-    var notAuthenticatedFakeUser = {
+    fakeUserNotAuthenticated = {
       "id": 0,
-      "username": "bad_guy",
-      "password": "password",
-      "firstname": "Frederick",
-      "lastname": "Pouros",
-      "picture": "https://s3.amazonaws.com/uifaces/faces/twitter/y2graphic/128.jpg",
-      "CPF": 252373492
+        "username": "bad_guy",
+        "password": "password",
+        "firstname": "Frederick",
+        "lastname": "Pouros",
+        "picture": "https://s3.amazonaws.com/uifaces/faces/twitter/y2graphic/128.jpg",
+        "CPF": 252373492
     };
 
-    var authenticationServicesResponse = authenticationServices.isUserAuthenticated(fakeUserList, notAuthenticatedFakeUser);
-
-    expect(authenticationServicesResponse).toEqual(false);
-  });
-
-  it("should return false if user entered wrong password", function () {
-    var notAuthenticatedFakeUser = {
+    fakeUserNotAuthenticatedBadPassword = {
       "id": 0,
       "username": "fakeUser0",
       "password": "bad_password",
@@ -116,52 +99,68 @@ describe('authenticationServices test', function () {
       "CPF": 252373492
     };
 
-    var authenticationServicesResponse = authenticationServices.isUserAuthenticated(fakeUserList, notAuthenticatedFakeUser);
+    fakeNewUser = {
+      "username": "fakeUser0",
+      "password": "password",
+      "name": "Frederick",
+      "lastname": "Pouros"
+    };
+
+    fakeNewBadUser = {
+      "username": "fakeUser0",
+      "name": "Frederick",
+      "lastname": "Pouros"
+    };
+
+  });
+
+  it('should pass!', function () {
+    expect(authenticationServices).toBeDefined();
+  });
+
+  it("should return true if the user is found in the list", function () {
+    var authenticationServicesResponse = authenticationServices.isUserAuthenticated(fakeUserList, fakeUserAuthenticated);
+
+    expect(authenticationServicesResponse).toEqual(true);
+  });
+
+  it("should return false if the username is not found in the list", function () {
+    var authenticationServicesResponse = authenticationServices.isUserAuthenticated(fakeUserList, fakeUserNotAuthenticated);
+
+    expect(authenticationServicesResponse).toEqual(false);
+  });
+
+  it("should return false if user entered wrong password", function () {
+    var authenticationServicesResponse = authenticationServices.isUserAuthenticated(fakeUserList, fakeUserNotAuthenticatedBadPassword);
 
     expect(authenticationServicesResponse).toEqual(false);
   });
 
   it("should return true if all input fields is filled out in create new user view", function () {
-
-    var fakeUser = {
-      "username": "fakeUser0",
-      "password": "password",
-      "name": "Frederick",
-      "lastname": "Pouros"
-    };
-
-    var authenticationServicesResponse = authenticationServices.autehnticateNewUser(fakeUser);
+    var authenticationServicesResponse = authenticationServices.autehnticateNewUser(fakeNewUser);
 
     expect(authenticationServicesResponse).toEqual(true);
   });
 
   it("should return false if not all input fields is filled out in create new user view", function () {
-
-    var fakeUser = {
-      "username": "fakeUser0",
-      "name": "Frederick",
-      "lastname": "Pouros"
-    };
-
-    var authenticationServicesResponse = authenticationServices.autehnticateNewUser(fakeUser);
+    var authenticationServicesResponse = authenticationServices.autehnticateNewUser(fakeNewBadUser);
 
     expect(authenticationServicesResponse).toEqual(false);
   });
 
-  it("Test", function () {
+  it("should return true if the user i authenticated", function () {
     spyOn(mockUserServices, 'setUser').and.returnValue(true);
 
-    var fakeUser = {
-      "id": 0,
-      "username": "fakeUser0",
-      "password": "password",
-      "firstname": "Frederick",
-      "lastname": "Pouros",
-      "picture": "https://s3.amazonaws.com/uifaces/faces/twitter/y2graphic/128.jpg",
-      "CPF": 252373492
-    };
-    var result = authenticationServices.isUserAuthenticated(fakeUserList, fakeUser);
+    var result = authenticationServices.isUserAuthenticated(fakeUserList, fakeUserAuthenticated);
 
     expect(result).toEqual(true);
+  });
+
+  it("should call userServices with to correct data", function () {
+    spyOn(mockUserServices, 'setUser').and.callThrough();
+
+    authenticationServices.isUserAuthenticated(fakeUserList, fakeUserAuthenticated);
+
+    expect(mockUserServices.setUser).toHaveBeenCalledWith(fakeUserAuthenticated);
   });
 });

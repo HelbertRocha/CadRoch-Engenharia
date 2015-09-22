@@ -25,7 +25,6 @@ angular.module('docsys-phonegap')
       },
 
       getUser: function() {
-
         if(_user["username"] != null)
           return _user;
 

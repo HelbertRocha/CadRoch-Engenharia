@@ -4,12 +4,25 @@
 
 <ion-content class="has-header" scroll="false">
 
+  <div ng-if="user.username != undefined">
   <div class="card" id="userInformation">
     <div class="item item-avatar">
-      <img src="http://www.wallstreetotc.com/wp-content/uploads/2014/10/facebook-anonymous-app.jpg">
-      <p> {{ user.firstname }} {{ user.lastname }} </p>
+      <img ng-src="{{ user.picture }}"/>
+      <p class="nameLabel"> {{ user.firstname }} {{ user.lastname }} </p>
       <p> {{ date | date:'yyyy-dd-MM - HH:mm' }} </p>
-      <p> at work </p>
+      <p> at work</p>
+    </div>
+  </div>
+  </div>
+
+  <div ng-if="user == false">
+    <div class="card" id="undefinedUserInformation">
+      <div class="item item-avatar">
+        <img ng-src="http://www.wallstreetotc.com/wp-content/uploads/2014/10/facebook-anonymous-app.jpg"/>
+        <p class="nameLabel"> John Doe </p>
+        <p> {{ date | date:'yyyy-dd-MM - HH:mm' }} </p>
+        <p> at work</p>
+      </div>
     </div>
   </div>
 

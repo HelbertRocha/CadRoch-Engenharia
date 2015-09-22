@@ -14,7 +14,7 @@ angular.module('docsys-phonegap')
       });
   }])
 
-  .controller('HomeCtrl', ['$location', '$scope', '$ionicModal', 'authenticationServices', 'userBackendApi', function($location, $scope, $ionicModal, authenticationServices, userBackendApi) {
+  .controller('HomeCtrl', ['$location', '$scope', '$ionicModal', 'authenticationServices', 'userBackendApi', '$state', function($location, $scope, $ionicModal, authenticationServices, userBackendApi, $state) {
 
     $scope.init = function() {
       $scope.userIsAuthorised = false;
@@ -82,7 +82,7 @@ angular.module('docsys-phonegap')
           $scope.userList = userList;
           if(authenticationServices.isUserAuthenticated($scope.userList, $scope.user)) {
             $scope.userIsAuthorised = true;
-            $location.path('/activity');
+            $state.go('activity');
           }
           else{
             $scope.showErrorMessage("Username or password is not correct", false);

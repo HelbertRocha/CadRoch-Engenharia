@@ -14,10 +14,9 @@ angular.module('docsys-phonegap')
       });
   }])
 
-  .controller('ActivityCtrl', ['$scope', function($scope) {
-
+  .controller('ActivityCtrl', ['$scope', 'userServices', function($scope, userServices) {
     $scope.init = function() {
-      $scope.user = { firstname: "Firstname", lastname: "Lastname" };
+      $scope.user = userServices.getUser();
       $scope.date = new Date();
     };
 
