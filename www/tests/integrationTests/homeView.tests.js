@@ -105,5 +105,20 @@ describe('integration test of home view functionality', function() {
     var errorMessage = element(by.id('errorMessage'));
     expect(errorMessage.isDisplayed()).toBeFalsy();
   });
+
+  it("should show success message on successful creating new user", function () {
+
+    element(by.id('newUserButton')).click();
+
+    element(by.id('usernameModalView')).sendKeys('fake username');
+    element(by.id('passwordModalView')).sendKeys('fake password');
+    element(by.id('firstnameModalView')).sendKeys('fake name');
+    element(by.id('lastnameModalView')).sendKeys('fake surname');
+
+    element(by.id('createButtonModalView')).click();
+
+    var successMessage = element(by.id('successMessage'));
+    expect(successMessage.isDisplayed()).toBeTruthy();
+  });
 });
 

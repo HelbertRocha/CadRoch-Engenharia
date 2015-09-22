@@ -20,6 +20,10 @@
     <p id="errorMessage" style="color: red">{{ errorMessage }}</p>
   </div>
 
+  <div ng-hide="hideSuccessMessage" class="ng-hide">
+    <p id="successMessage" style="color: green">{{ successMessage }}</p>
+  </div>
+
   <button class="button button-full button-positive" id="loginButton" ng-click="logIn()">
     Login
   </button>

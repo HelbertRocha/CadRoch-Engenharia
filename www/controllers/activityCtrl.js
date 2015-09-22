@@ -17,9 +17,13 @@ angular.module('docsys-phonegap')
   .controller('ActivityCtrl', ['$scope', function($scope) {
 
     $scope.init = function() {
-
+      $scope.user = { firstname: "Firstname", lastname: "Lastname" };
+      $scope.date = new Date();
     };
 
+    $scope.goToActivity = function(activity) {
+      console.log(activity);
+    };
 
     $scope.init();
   }]);

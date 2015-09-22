@@ -4,10 +4,23 @@
 
 describe('authenticationServices test', function () {
 
-  var authenticationServices, fakeUserList;
+  var authenticationServices, fakeUserList, mockUserServices;
 
   beforeEach(module('ngResource'));
   beforeEach(module('docsys-phonegap'));
+
+  beforeEach(function () {
+
+    mockUserServices = {
+      setUser: function (user) { },
+      getUser: function () { }
+    };
+
+    module(function ($provide) {
+      $provide.value('userServices', mockUserServices);
+    });
+
+  });
 
   beforeEach(function() {
     inject(function(_authenticationServices_) {
@@ -133,5 +146,22 @@ describe('authenticationServices test', function () {
     var authenticationServicesResponse = authenticationServices.autehnticateNewUser(fakeUser);
 
     expect(authenticationServicesResponse).toEqual(false);
+  });
+
+  it("Test", function () {
+    spyOn(mockUserServices, 'setUser').and.returnValue(true);
+
+    var fakeUser = {
+      "id": 0,
+      "username": "fakeUser0",
+      "password": "password",
+      "firstname": "Frederick",
+      "lastname": "Pouros",
+      "picture": "https://s3.amazonaws.com/uifaces/faces/twitter/y2graphic/128.jpg",
+      "CPF": 252373492
+    };
+    var result = authenticationServices.isUserAuthenticated(fakeUserList, fakeUser);
+
+    expect(result).toEqual(true);
   });
 });

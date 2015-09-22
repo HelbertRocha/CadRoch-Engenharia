@@ -21,6 +21,8 @@ angular.module('docsys-phonegap')
       $scope.userList = {};
       $scope.user = {};
       $scope.newuser = {};
+      $scope.hideSuccessMessage = true;
+      $scope.successMessage = "New user created";
       initErrorMessages();
       createModalView();
     };
@@ -97,6 +99,7 @@ angular.module('docsys-phonegap')
         // Call save on userBackendApi and close modal view
         userBackendApi.save($scope.newuser);
         $scope.hideCreateNewUserView();
+        $scope.hideSuccessMessage = false;
       } else {
         $scope.showErrorMessage('Please fill all fields', true);
       }
