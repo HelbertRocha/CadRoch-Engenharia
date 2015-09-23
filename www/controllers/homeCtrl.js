@@ -53,6 +53,7 @@ angular.module('docsys-phonegap')
     $scope.hideCreateNewUserView = function() {
       $scope.createNewUserView.hide();
 
+      // @todo should clear all text fields on exit
       // Clearing possible error messages on home view
       $scope.showErrorMessage("", true);
       $scope.modalHideErrorMessage= true;
@@ -83,6 +84,7 @@ angular.module('docsys-phonegap')
           if(authenticationServices.isUserAuthenticated($scope.userList, $scope.user)) {
             $scope.userIsAuthorised = true;
             $state.go('activity');
+            // @todo clear error msg with successful login
           }
           else{
             $scope.showErrorMessage("Username or password is not correct", false);
@@ -97,7 +99,9 @@ angular.module('docsys-phonegap')
       if(authenticationServices.autehnticateNewUser($scope.newuser))
       {
         // Call save on userBackendApi and close modal view
+        // @todo open camera here!
         userBackendApi.save($scope.newuser);
+        console.log($scope.newuser);
         $scope.hideCreateNewUserView();
         $scope.hideSuccessMessage = false;
       } else {

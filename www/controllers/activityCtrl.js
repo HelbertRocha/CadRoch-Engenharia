@@ -14,6 +14,7 @@ angular.module('docsys-phonegap')
       });
   }])
 
+  // @todo add logout btn to activity
   .controller('ActivityCtrl', ['$scope', 'userServices', '$cordovaGeolocation', function($scope, userServices, $cordovaGeolocation) {
     $scope.init = function() {
       $scope.user = userServices.getUser();
