@@ -25,4 +25,3 @@ angular.module('docsys-phonegap', [
   .config(['$urlRouterProvider', function($urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
   }]);
-

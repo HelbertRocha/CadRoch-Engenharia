@@ -9,6 +9,11 @@
   <ion-content>
     <form ng-submit="">
       <div class="list">
+
+        <div class="item item-avatar">
+          <img ng-src="{{ newuser.picture }}"/>
+        </div>
+
         <label class="item item-input">
           <span class="input-label">Username</span>
           <input type="text" id="usernameModalView" ng-model="newuser.username">
@@ -30,7 +35,7 @@
           <p id="modalErrorMessage" style="color: red">{{ modalErrorMessage }}</p>
         </div>
 
-        <button class="button button-full button-positive" type="submit" id="pictureButtonModalView">Take picture</button>
+        <button class="button button-full button-positive" type="submit" id="pictureButtonModalView" ng-click="takeProfilePicture()">Take picture</button>
         <button class="button button-full button-positive" type="submit" id="createButtonModalView" ng-click="createNewUser()">Create</button>
       </div>
     </form>
