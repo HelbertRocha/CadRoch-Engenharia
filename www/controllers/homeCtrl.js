@@ -19,19 +19,19 @@ angular.module('docsys-phonegap')
     '$ionicModal',
     'authenticationServices',
     'userBackendApi',
+    '$cordovaFileTransfer',
     '$state',
     '$cordovaCamera',
     '$ionicPlatform',
-    '$cordovaFileTransfer',
     function ($location,
               $scope,
               $ionicModal,
               authenticationServices,
               userBackendApi,
+              $cordovaFileTransfer,
               $state,
               $cordovaCamera,
-              $ionicPlatform,
-              $cordovaFileTransfer) {
+              $ionicPlatform) {
 
       /**
        * This function gets called when the controller get loaded into memory.
@@ -132,10 +132,27 @@ angular.module('docsys-phonegap')
       $scope.createNewUser = function () {
           // @todo check if user has taken a profile picture and upload picture here!
         if (authenticationServices.autehnticateNewUser($scope.newuser)) {
+            userBackendApi.save($scope.newuser);
+            $scope.hideCreateNewUserView();
+            $scope.hideSuccessMessage = false;
           // Call save on userBackendApi and close modal view
-          userBackendApi.save($scope.newuser);
-          $scope.hideCreateNewUserView();
-          $scope.hideSuccessMessage = false;
+
+          var options = {
+            fileKey: "picture",
+            fileName: "image.jpeg",
+            chunkedMode: false,
+            mimeType: "image/jpeg"
+          };
+
+          $cordovaFileTransfer.upload("http://192.168.1.46/docsys/public/profilePhotos", $scope.newuser.picture, options).then(function(result) {
+            console.log("SUCCESS: " + JSON.stringify(result.response));
+          }, function(err) {
+            // write error msg here for user
+            console.log(err);
+            console.log("ERROR: " + JSON.stringify(err));
+          });
+
+
         } else {
           $scope.showErrorMessage('Please fill all fields', true);
         }
@@ -163,6 +180,7 @@ angular.module('docsys-phonegap')
 
           $cordovaCamera.getPicture(options).then(function (imageData) {
             $scope.newuser.picture = "data:image/jpeg;base64," + imageData;
+            $scope.profilePhotoTaken = true;
           }, function (err) {
             console.log(err);
           });

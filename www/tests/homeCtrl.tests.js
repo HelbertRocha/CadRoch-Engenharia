@@ -6,7 +6,7 @@
 
 describe('docsys-phonegap.home module', function () {
 
-  var scope, controller, mockAuthenticationServices, mockUserBackendApi, $q, $rootScope, queryDeferred;
+  var scope, controller, mockAuthenticationServices, mockUserBackendApi, $q, $rootScope, queryDeferred, mockCordovaFileTransfer;
   var fakeUser =
     {
       "id": 0,
@@ -20,6 +20,7 @@ describe('docsys-phonegap.home module', function () {
 
   beforeEach(module('ionic'));
   beforeEach(module('ui.router'));
+  beforeEach(module('ngCordova'));
   beforeEach(module('docsys-phonegap'));
 
   beforeEach(inject(function(_$q_, _$rootScope_) {
@@ -45,10 +46,18 @@ describe('docsys-phonegap.home module', function () {
       }
     };
 
+    mockCordovaFileTransfer = {
+      upload: function() {
+        queryDeferred = $q.defer();
+        return {$promise: queryDeferred.promise};
+      }
+    };
+
       controller = $controller('HomeCtrl', {
       $scope: scope,
       authenticationServices: mockAuthenticationServices,
-      userBackendApi: mockUserBackendApi
+      userBackendApi: mockUserBackendApi,
+      $cordovaFileTransfer: mockCordovaFileTransfer
       });
   }));
 
@@ -168,6 +177,7 @@ describe('docsys-phonegap.home module', function () {
 
   it("should call post when a user gets created", function () {
     spyOn(mockUserBackendApi, 'save');
+    spyOn(mockCordovaFileTransfer, 'upload').and.returnValue(true);
     spyOn(mockAuthenticationServices, 'autehnticateNewUser').and.returnValue(true);
     spyOn(scope, 'hideCreateNewUserView').and.returnValue(true);
 
@@ -180,6 +190,7 @@ describe('docsys-phonegap.home module', function () {
 
   it("should call post when a user gets created", function () {
     spyOn(mockUserBackendApi, 'save').and.callThrough();
+    spyOn(mockCordovaFileTransfer, 'upload').and.returnValue(true);
     spyOn(mockAuthenticationServices, 'autehnticateNewUser').and.returnValue(true);
     spyOn(scope, 'hideCreateNewUserView').and.returnValue(true);
 
