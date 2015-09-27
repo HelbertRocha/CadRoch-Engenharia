@@ -23,11 +23,16 @@ angular.module('docsys-phonegap')
 
     $scope.goToActivity = function(activity) {
 
+      console.log("user is", activity, " at");
+      getLocation();
+    };
+
+    function getLocation() {
       var geolocationOptions = {timeout: 10000, enableHighAccuracy: false};
       $cordovaGeolocation
         .getCurrentPosition(geolocationOptions)
         .then(function (position) {
-          console.log("user is", activity, " at");
+
           console.log("lat", position.coords.latitude);
           console.log("long", position.coords.longitude);
         }, function(err) {

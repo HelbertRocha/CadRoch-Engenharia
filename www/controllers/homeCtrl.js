@@ -19,7 +19,7 @@ angular.module('docsys-phonegap')
     '$ionicModal',
     'authenticationServices',
     'userBackendApi',
-    '$cordovaFileTransfer',
+    'fileTransferServices',
     '$state',
     '$cordovaCamera',
     '$ionicPlatform',
@@ -28,7 +28,7 @@ angular.module('docsys-phonegap')
               $ionicModal,
               authenticationServices,
               userBackendApi,
-              $cordovaFileTransfer,
+              fileTransferServices,
               $state,
               $cordovaCamera,
               $ionicPlatform) {
@@ -137,21 +137,8 @@ angular.module('docsys-phonegap')
             $scope.hideSuccessMessage = false;
           // Call save on userBackendApi and close modal view
 
-          var options = {
-            fileKey: "picture",
-            fileName: "image.jpeg",
-            chunkedMode: false,
-            mimeType: "image/jpeg"
-          };
-
-          $cordovaFileTransfer.upload("http://192.168.1.46/docsys/public/profilePhotos", $scope.newuser.picture, options).then(function(result) {
-            console.log("SUCCESS: " + JSON.stringify(result.response));
-          }, function(err) {
-            // write error msg here for user
-            console.log(err);
-            console.log("ERROR: " + JSON.stringify(err));
-          });
-
+          // @todo add error handling here if picture can't be uploaded
+          fileTransferServices.uploadPicture("http://192.168.0.13/docsys/public/profilePhotos", $scope.newuser.picture);
 
         } else {
           $scope.showErrorMessage('Please fill all fields', true);

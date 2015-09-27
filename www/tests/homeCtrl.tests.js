@@ -6,7 +6,7 @@
 
 describe('docsys-phonegap.home module', function () {
 
-  var scope, controller, mockAuthenticationServices, mockUserBackendApi, $q, $rootScope, queryDeferred, mockCordovaFileTransfer;
+  var scope, controller, mockAuthenticationServices, mockUserBackendApi, $q, $rootScope, queryDeferred, mockFileTransferServices;
   var fakeUser =
     {
       "id": 0,
@@ -46,18 +46,15 @@ describe('docsys-phonegap.home module', function () {
       }
     };
 
-    mockCordovaFileTransfer = {
-      upload: function() {
-        queryDeferred = $q.defer();
-        return {$promise: queryDeferred.promise};
-      }
+    mockFileTransferServices = {
+      uploadPicture: function(path, picture) { }
     };
 
       controller = $controller('HomeCtrl', {
       $scope: scope,
       authenticationServices: mockAuthenticationServices,
       userBackendApi: mockUserBackendApi,
-      $cordovaFileTransfer: mockCordovaFileTransfer
+      fileTransferServices: mockFileTransferServices
       });
   }));
 
@@ -176,12 +173,12 @@ describe('docsys-phonegap.home module', function () {
   });
 
   it("should call post when a user gets created", function () {
-    spyOn(mockUserBackendApi, 'save');
-    spyOn(mockCordovaFileTransfer, 'upload').and.returnValue(true);
+    spyOn(mockUserBackendApi, 'save').and.callThrough();
+    spyOn(mockFileTransferServices, 'uploadPicture').and.returnValue(true);
     spyOn(mockAuthenticationServices, 'autehnticateNewUser').and.returnValue(true);
     spyOn(scope, 'hideCreateNewUserView').and.returnValue(true);
 
-    scope.newuser = { usernamer: "user", password: "password", firstname: "name", lastname: "lastname" };
+    scope.newuser = { usernamer: "user", password: "password", firstname: "name", lastname: "lastname", picture: "blablabla" };
 
     scope.createNewUser();
 
@@ -190,7 +187,7 @@ describe('docsys-phonegap.home module', function () {
 
   it("should call post when a user gets created", function () {
     spyOn(mockUserBackendApi, 'save').and.callThrough();
-    spyOn(mockCordovaFileTransfer, 'upload').and.returnValue(true);
+    spyOn(mockFileTransferServices, 'uploadPicture').and.returnValue(true);
     spyOn(mockAuthenticationServices, 'autehnticateNewUser').and.returnValue(true);
     spyOn(scope, 'hideCreateNewUserView').and.returnValue(true);
 

@@ -26,10 +26,9 @@ module.exports = function(config) {
       // main app
       '../app.js',
 
-      // dependencies / modules
+      // dependencies
       '../controllers/*.js',
       '../services/*.js',
-      '../models/*.js',
 
       // tests
       '*tests.js'
