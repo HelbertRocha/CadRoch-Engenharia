@@ -24,6 +24,7 @@ angular.module('docsys-phonegap')
                                '$cordovaFileTransfer',
                                '$ionicPopup',
                                'fileTransferServices',
+                               'configServices',
                                 function($scope,
                                          userServices,
                                          gpsLocationServices,
@@ -32,7 +33,8 @@ angular.module('docsys-phonegap')
                                          $cordovaCamera,
                                          $cordovaFileTransfer,
                                          $ionicPopup,
-                                         fileTransferServices) {
+                                         fileTransferServices,
+                                         configServices) {
     $scope.init = function() {
       $scope.user = userServices.getUser();
       $scope.date = new Date();
@@ -42,7 +44,6 @@ angular.module('docsys-phonegap')
     $scope.logActivity = function(activity) {
 
       gpsLocationServices.getLocation().then(function(position) {
-      // @todo take picture of user here, upload photo, create JSON obj with GPS location, activity and user info and post to activity endpoint
         $ionicPlatform.ready(function () {
           var options = {
             quality: 100,
@@ -60,9 +61,6 @@ angular.module('docsys-phonegap')
           // @todo unit test getPicture function and add exception handling
           $cordovaCamera.getPicture(options).then(function (imageData) {
             $scope.picture = "data:image/jpeg;base64," + imageData;
-            /*fileTransferServices.uploadPicture("http://192.168.1.46/docsys/public/pictures", $scope.picture, pictureOptions).then(function(result) {
-              console.log(result);
-            });*/
 
             document.addEventListener('deviceready', function () {
               var pictureOptions = {
@@ -72,11 +70,11 @@ angular.module('docsys-phonegap')
                 mimeType: "image/jpeg"
               };
 
-              $cordovaFileTransfer.upload("http://192.168.1.46/docsys/public/pictures", $scope.picture, pictureOptions)
+              $cordovaFileTransfer.upload(configServices.baseUrl + configServices.pictureEndpoint, $scope.picture, pictureOptions)
                 .then(function(result) {
                   var filePath = result.response;
 
-                  var testUserData = {
+                  var userData = {
                     userID: $scope.user.id,
                     activity: activity,
                     picture_url: filePath,
@@ -84,27 +82,19 @@ angular.module('docsys-phonegap')
                     long: position.coords.longitude
                   };
 
-                  activityBackendApi.save(testUserData);
+                  activityBackendApi.save(userData);
 
+                  $ionicPopup.alert({
+                    title: 'Success',
+                    template: '<img src="http://www.hotelandairpromotion.com/img/success.png" style="display: block; margin-left: auto; margin-right: auto; width: 75px; height: 75px"><br/ >Your current status is now: ' + activity
+                  });
                 }, function(err) {
                   // Error
-                }, function (progress) {
-                  // constant progress updates
                 });
 
             }, false);
 
           });
-
-
-
-
-        });
-
-        // @todo change the location of the popup
-        var alertPopup = $ionicPopup.alert({
-          title: 'Success',
-          template: '<img src="http://www.hotelandairpromotion.com/img/success.png" style="display: block; margin-left: auto; margin-right: auto; width: 75px; height: 75px"><br/ >Your current status is now: ' + activity
         });
       });
 

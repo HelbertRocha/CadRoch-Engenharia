@@ -20,20 +20,14 @@ describe('configServices test', function () {
     expect(configServices).toBeDefined();
   });
 
-  it("should return dev url when devmode is on", function () {
-    configServices.devMode = true;
+  it("should return base url to server", function () {
+    var baseUrl = configServices.baseUrl;
 
-    var devUrl = "http://localhost:3000/user";
-
-    expect(configServices.getURL()['user']).toEqual(devUrl);
+    expect(baseUrl).toEqual('http://192.168.1.46/docsys/public/');
   });
 
-  it("should return live url when devmode is off", function () {
-    configServices.devMode = false;
-
-    var devUrl = "liveServer";
-
-    expect(configServices.getURL()['user']).toEqual(devUrl);
+  it("should return camera settings as wanted", function () {
+    console.log(configServices.cameraOptions);
   });
 
 });

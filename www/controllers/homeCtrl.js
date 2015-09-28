@@ -141,7 +141,7 @@ angular.module('docsys-phonegap')
           fileTransferServices.uploadPicture("http://192.168.1.46/docsys/public/profilePhotos", $scope.newuser.picture);
 
         } else {
-          $scope.showErrorMessage('Please fill all fields', true);
+          $scope.showErrorMessage('Please fill out all fields', true);
         }
       };
 
