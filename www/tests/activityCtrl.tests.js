@@ -5,36 +5,48 @@
 
 describe('docsys-phonegap.home module', function () {
 
-  var scope, controller, mockUserServices, fakeUserAuthenticated;
+  var scope, controller, mockUserServices, fakeUserAuthenticated, mockGpsLocationServices;
+  var $q, queryDeferred;
+
+  var fakeGpsLocation = {
+
+  };
+
+  fakeUserAuthenticated = {
+    "id": 0,
+    "username": "fakeUser0",
+    "password": "password",
+    "firstname": "Frederick",
+    "lastname": "Pouros",
+    "picture": "https://s3.amazonaws.com/uifaces/faces/twitter/y2graphic/128.jpg",
+    "CPF": 252373492
+  };
 
   beforeEach(module('ionic'));
   beforeEach(module('ui.router'));
   beforeEach(module('docsys-phonegap'));
 
-  beforeEach(function() {
-
-  fakeUserAuthenticated = {
-      "id": 0,
-      "username": "fakeUser0",
-      "password": "password",
-      "firstname": "Frederick",
-      "lastname": "Pouros",
-      "picture": "https://s3.amazonaws.com/uifaces/faces/twitter/y2graphic/128.jpg",
-      "CPF": 252373492
-    };
-  });
-
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope, _$q_) {
     scope = $rootScope.$new();
+    $q = _$q_;
 
     mockUserServices = {
       setUser: function (user) { },
       getUser: function () { }
     };
 
+    mockGpsLocationServices = {
+      getLocation: function () {
+        //queryDeferred = $q.defer();
+        console.log("hello from mock");
+        //return {$promise: queryDeferred.promise};
+      }
+    };
+
     controller = $controller('ActivityCtrl', {
       $scope: scope,
-      userServices: mockUserServices
+      userServices: mockUserServices,
+      gpsLocationServices: mockGpsLocationServices
     });
   }));
 
@@ -56,6 +68,20 @@ describe('docsys-phonegap.home module', function () {
 
     scope.init();
     expect(scope.user['picture']).toEqual(picture);
+  });
+
+  it("should call getUser when controller gets instanciated", function () {
+    spyOn(mockUserServices, 'getUser').and.callThrough();
+
+    scope.init();
+    expect(mockUserServices.getUser).toHaveBeenCalled();
+  });
+
+  it("should know .then function on gpsLocationServices", function () {
+    spyOn(mockGpsLocationServices, 'getLocation').and.returnValue(true);
+
+
+    expect(mockGpsLocationServices.getLocation()).toEqual(true);
   });
 
 });

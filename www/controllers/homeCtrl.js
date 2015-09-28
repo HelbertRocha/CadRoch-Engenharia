@@ -138,7 +138,7 @@ angular.module('docsys-phonegap')
           // Call save on userBackendApi and close modal view
 
           // @todo add error handling here if picture can't be uploaded
-          fileTransferServices.uploadPicture("http://192.168.0.13/docsys/public/profilePhotos", $scope.newuser.picture);
+          fileTransferServices.uploadPicture("http://192.168.1.46/docsys/public/profilePhotos", $scope.newuser.picture);
 
         } else {
           $scope.showErrorMessage('Please fill all fields', true);
@@ -165,6 +165,7 @@ angular.module('docsys-phonegap')
             correctOrientation: true
           };
 
+          // @todo unit test getPicture function
           $cordovaCamera.getPicture(options).then(function (imageData) {
             $scope.newuser.picture = "data:image/jpeg;base64," + imageData;
             $scope.profilePhotoTaken = true;

@@ -4,9 +4,9 @@
 
 angular.module('docsys-phonegap')
 
-  .factory('fileTransferServices', ['configServices', '$cordovaFileTransfer', '$ionicPlatform', function(configServices, $cordovaFileTransfer, $ionicPlatform) {
+  .factory('fileTransferServices', ['configServices', '$cordovaFileTransfer', function(configServices, $cordovaFileTransfer) {
 
-    var options = {
+    var _options = {
       fileKey: "picture",
       fileName: "image.jpeg",
       chunkedMode: false,
@@ -15,15 +15,19 @@ angular.module('docsys-phonegap')
 
     return {
 
-      uploadPicture: function(endpoint, picture) {
-        console.log("Hello from upload picture func 1");
-        console.log(endpoint, picture);
+      uploadPicture: function(endpoint, picture, specificOptions) {
+
+        if(specificOptions)
+          options = specificOptions;
+        else
+          options = _options;
+
+        console.log(endpoint);
+        console.log(picture);
         // as soon as this function is called FileTransfer "should" be defined
         document.addEventListener('deviceready', function () {
-          console.log("Hello from upload picture func 2");
           return $cordovaFileTransfer.upload(endpoint, picture, options);
         }, false);
-        console.log("Hello from upload picture func 3");
       }
     };
 
