@@ -36,6 +36,12 @@ describe('integration test of activity view functionality', function() {
     expect(activityList.isDisplayed()).toBeTruthy();
   });
 
+  it("should have a logout btn", function () {
+
+    var logoutBtn = element(by.id('logout'));
+    expect(logoutBtn.isDisplayed()).toBeTruthy();
+  });
+
   it("should have four elements in the list", function () {
 
     element.all(by.className('item-icon-left')).then(function(items) {

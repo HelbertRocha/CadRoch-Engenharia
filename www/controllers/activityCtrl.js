@@ -16,29 +16,36 @@ angular.module('docsys-phonegap')
 
   // @todo add logout btn to activity
   .controller('ActivityCtrl', ['$scope',
-                               'userServices',
-                               'gpsLocationServices',
-                               'activityBackendApi',
-                               '$ionicPlatform',
-                               '$cordovaCamera',
-                               '$cordovaFileTransfer',
-                               '$ionicPopup',
-                               'fileTransferServices',
-                               'configServices',
-                                function($scope,
-                                         userServices,
-                                         gpsLocationServices,
-                                         activityBackendApi,
-                                         $ionicPlatform,
-                                         $cordovaCamera,
-                                         $cordovaFileTransfer,
-                                         $ionicPopup,
-                                         fileTransferServices,
-                                         configServices) {
+     'userServices',
+     'gpsLocationServices',
+     'activityBackendApi',
+     '$ionicPlatform',
+     '$cordovaCamera',
+     '$cordovaFileTransfer',
+     '$ionicPopup',
+     'fileTransferServices',
+     'configServices',
+     '$state',
+      function($scope,
+               userServices,
+               gpsLocationServices,
+               activityBackendApi,
+               $ionicPlatform,
+               $cordovaCamera,
+               $cordovaFileTransfer,
+               $ionicPopup,
+               fileTransferServices,
+               configServices,
+               $state) {
     $scope.init = function() {
       $scope.user = userServices.getUser();
       $scope.date = new Date();
       $scope.picture = "";
+      console.log($scope.user);
+    };
+
+    $scope.logout = function() {
+      $state.go('home');
     };
 
     $scope.logActivity = function(activity) {

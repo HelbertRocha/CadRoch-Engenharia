@@ -49,6 +49,7 @@ angular.module('docsys-phonegap')
         $scope.profilePhotoTaken = false;
         initErrorMessages();
         createModalView();
+        console.log("calling init");
       };
 
       /**
@@ -109,7 +110,7 @@ angular.module('docsys-phonegap')
        */
       $scope.logIn = function () {
         if ($scope.user.username && $scope.user.password) {
-          userBackendApi.query().$promise.then(function (userList) {
+          userBackendApi.query().$promise.then(function(userList) {
             $scope.userList = userList;
             if (authenticationServices.isUserAuthenticated($scope.userList, $scope.user)) {
               $scope.userIsAuthorised = true;
@@ -131,7 +132,7 @@ angular.module('docsys-phonegap')
        */
       $scope.createNewUser = function () {
           // @todo check if user has taken a profile picture and upload picture here!
-        if (authenticationServices.autehnticateNewUser($scope.newuser)) {
+        if (authenticationServices.authenticateNewUser($scope.newuser)) {
             userBackendApi.save($scope.newuser);
             $scope.hideCreateNewUserView();
             $scope.hideSuccessMessage = false;

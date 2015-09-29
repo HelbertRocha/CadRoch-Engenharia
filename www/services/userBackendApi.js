@@ -5,5 +5,5 @@
 angular.module('docsys-phonegap')
 
   .factory('userBackendApi', ['configServices', '$resource', function(configServices, $resource) {
-    return $resource(configServices.baseUrl + configServices.userEndPoint);
+    return $resource(configServices.baseUrl + configServices.userEndpoint);
   }]);

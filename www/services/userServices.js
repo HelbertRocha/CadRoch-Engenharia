@@ -15,13 +15,13 @@ angular.module('docsys-phonegap')
     };
 
     return {
-      setUser: function(setUser) {
-        _user.id = setUser.id;
-        _user.username = setUser.username;
-        _user.password = setUser.password;
-        _user.firstname = setUser.firstname;
-        _user.lastname = setUser.lastname;
-        _user.picture = setUser.picture;
+      setUser: function(user) {
+        _user.id = user.id;
+        _user.username = user.username;
+        _user.password = user.password;
+        _user.firstname = user.firstname;
+        _user.lastname = user.lastname;
+        _user.picture = user.picture;
       },
 
       getUser: function() {

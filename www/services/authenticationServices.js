@@ -19,6 +19,7 @@ angular.module('docsys-phonegap')
       for (var i = 0; i <= userList.length-1; i++) {
         if (userList[i]["username"] == user["username"]) {
           if (userList[i]["password"] == user["password"]) {
+            console.log("setting user");
             userServices.setUser(userList[i]);
             return true;
           }
@@ -28,7 +29,7 @@ angular.module('docsys-phonegap')
     };
 
     // @todo add better authentication here
-    var autehnticateNewUser = function(user) {
+    var authenticateNewUser = function(user) {
       if(user.username && user.password && user.name && user.lastname)
       {
         return true;
@@ -38,7 +39,7 @@ angular.module('docsys-phonegap')
 
     return {
       isUserAuthenticated: isUserAuthenticated,
-      autehnticateNewUser: autehnticateNewUser
+      authenticateNewUser: authenticateNewUser
     };
 
   }]);

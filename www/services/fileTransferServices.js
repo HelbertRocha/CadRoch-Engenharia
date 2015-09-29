@@ -22,8 +22,6 @@ angular.module('docsys-phonegap')
         else
           options = _options;
 
-        console.log(endpoint);
-        console.log(picture);
         // as soon as this function is called FileTransfer "should" be defined
         document.addEventListener('deviceready', function () {
           return $cordovaFileTransfer.upload(endpoint, picture, options);
