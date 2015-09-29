@@ -14,7 +14,6 @@ angular.module('docsys-phonegap')
       });
   }])
 
-  // @todo add logout btn to activity
   .controller('ActivityCtrl', ['$scope',
      'userServices',
      'gpsLocationServices',
@@ -37,6 +36,11 @@ angular.module('docsys-phonegap')
                fileTransferServices,
                configServices,
                $state) {
+
+    /**
+     * This function gets called when the controller get loaded into memory.
+     * It sets up all the variables for the controller.
+     */
     $scope.init = function() {
       $scope.user = userServices.getUser();
       $scope.date = new Date();

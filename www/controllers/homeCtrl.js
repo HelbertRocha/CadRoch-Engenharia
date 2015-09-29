@@ -14,8 +14,7 @@ angular.module('docsys-phonegap')
       });
   }])
 
-  .controller('HomeCtrl', ['$location',
-    '$scope',
+  .controller('HomeCtrl', ['$scope',
     '$ionicModal',
     'authenticationServices',
     'userBackendApi',
@@ -23,8 +22,7 @@ angular.module('docsys-phonegap')
     '$state',
     '$cordovaCamera',
     '$ionicPlatform',
-    function ($location,
-              $scope,
+    function ($scope,
               $ionicModal,
               authenticationServices,
               userBackendApi,
