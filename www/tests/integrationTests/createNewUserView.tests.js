@@ -66,7 +66,7 @@ describe('integration test of home view functionality', function() {
     element(by.id('createButtonModalView')).click();
 
     var errorMessage = element(by.id('modalErrorMessage'));
-    expect(errorMessage.getAttribute('innerText')).toContain('Please fill all fields');
+    expect(errorMessage.getAttribute('innerText')).toContain('Please fill out all fields');
   });
 
   it("should clear error message correct, if user gets error msg and changes view and back again", function () {

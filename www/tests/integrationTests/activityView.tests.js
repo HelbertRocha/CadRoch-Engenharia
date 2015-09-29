@@ -7,6 +7,8 @@
 
 describe('integration test of activity view functionality', function() {
 
+  var fakeuser = {username: "Username", password: "password", firstname: "firstname", lastname: "lastname"};
+
   beforeEach(function() {
     browser.get('http://localhost:8100/#/activity');
   });
@@ -61,8 +63,8 @@ describe('integration test of activity view functionality', function() {
 
     browser.get('http://localhost:8100/#/');
 
-    element(by.id('name')).sendKeys('fakeUser0');
-    element(by.id('password')).sendKeys('fakePassword');
+    element(by.id('name')).sendKeys(fakeuser.username);
+    element(by.id('password')).sendKeys(fakeuser.password);
     element(by.id('loginButton')).click();
 
     var nameLabel = element(by.className('nameLabel'));

@@ -4,6 +4,8 @@
 
 describe('integration test of home view functionality', function() {
 
+  var fakeuser = {username: "Username", password: "password", firstname: "firstname", lastname: "lastname"};
+
   beforeEach(function() {
     browser.get('http://localhost:8100/#/');
   });
@@ -79,8 +81,8 @@ describe('integration test of home view functionality', function() {
 
   it("should hide error msg if login btn and username and password is filled out", function () {
 
-    element(by.id('name')).sendKeys('fakeUser');
-    element(by.id('password')).sendKeys('fakeUser');
+    element(by.id('name')).sendKeys(fakeuser.username);
+    element(by.id('password')).sendKeys(fakeuser.password);
     element(by.id('loginButton')).click();
 
     var errorMessage = element(by.id('errorMessage'));
@@ -89,8 +91,8 @@ describe('integration test of home view functionality', function() {
 
   it("should redirect user to correct screen", function () {
 
-    element(by.id('name')).sendKeys('fakeUser0');
-    element(by.id('password')).sendKeys('fakePassword');
+    element(by.id('name')).sendKeys(fakeuser.username);
+    element(by.id('password')).sendKeys(fakeuser.password);
     element(by.id('loginButton')).click();
 
     expect(browser.getLocationAbsUrl()).toMatch('/activity');
