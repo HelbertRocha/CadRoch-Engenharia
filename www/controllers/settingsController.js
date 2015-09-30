@@ -18,11 +18,16 @@ angular.module('docsys-phonegap')
       });
   }])
 
-  .controller('SettingsCtrl', ['$scope',
-    function ($scope) {
+  .controller('SettingsCtrl', ['$scope', '$translate',
+    function ($scope, $translate) {
 
       $scope.init = function () {
 
+      };
+
+      $scope.changeLanguage = function(lang) {
+        console.log("changing languages to: " + lang);
+        $translate.use(lang);
       };
 
       $scope.init();

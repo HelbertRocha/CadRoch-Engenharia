@@ -26,7 +26,6 @@ angular.module('docsys-phonegap')
     '$state',
     '$cordovaCamera',
     '$ionicPlatform',
-    '$translate',
     '$ionicSideMenuDelegate',
     function ($scope,
               $ionicModal,
@@ -36,7 +35,6 @@ angular.module('docsys-phonegap')
               $state,
               $cordovaCamera,
               $ionicPlatform,
-              $translate,
               $ionicSideMenuDelegate) {
 
       /**
@@ -180,10 +178,6 @@ angular.module('docsys-phonegap')
           });
 
         });
-      };
-
-      $scope.changeLanguage = function() {
-        $translate.use('pt_BR');
       };
 
       $scope.toggleSideMenu = function() {

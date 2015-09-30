@@ -1,3 +1,5 @@
 {
-  "newUserBtn": "Novo user"
+  "homeViewNewUserBtn": "Novo user",
+
+  "settingsViewLanguages" : "Línguas"
 }
