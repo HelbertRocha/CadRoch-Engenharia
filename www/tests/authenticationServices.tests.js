@@ -137,13 +137,13 @@ describe('authenticationServices test', function () {
   });
 
   it("should return true if all input fields is filled out in create new user view", function () {
-    var authenticationServicesResponse = authenticationServices.autehnticateNewUser(fakeNewUser);
+    var authenticationServicesResponse = authenticationServices.authenticateNewUser(fakeNewUser);
 
     expect(authenticationServicesResponse).toEqual(true);
   });
 
   it("should return false if not all input fields is filled out in create new user view", function () {
-    var authenticationServicesResponse = authenticationServices.autehnticateNewUser(fakeNewBadUser);
+    var authenticationServicesResponse = authenticationServices.authenticateNewUser(fakeNewBadUser);
 
     expect(authenticationServicesResponse).toEqual(false);
   });

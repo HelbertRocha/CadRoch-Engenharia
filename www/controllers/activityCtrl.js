@@ -45,7 +45,6 @@ angular.module('docsys-phonegap')
       $scope.user = userServices.getUser();
       $scope.date = new Date();
       $scope.picture = "";
-      console.log($scope.user);
     };
 
     $scope.logout = function() {

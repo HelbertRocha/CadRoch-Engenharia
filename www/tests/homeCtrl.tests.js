@@ -33,7 +33,7 @@ describe('docsys-phonegap.home module', function () {
 
     mockAuthenticationServices = {
       isUserAuthenticated: function(userList, user) {  },
-      autehnticateNewUser: function(user) { }
+      authenticateNewUser: function(user) { }
     };
 
     mockUserBackendApi = {
@@ -175,7 +175,7 @@ describe('docsys-phonegap.home module', function () {
   it("should call post when a user gets created", function () {
     spyOn(mockUserBackendApi, 'save').and.callThrough();
     spyOn(mockFileTransferServices, 'uploadPicture').and.returnValue(true);
-    spyOn(mockAuthenticationServices, 'autehnticateNewUser').and.returnValue(true);
+    spyOn(mockAuthenticationServices, 'authenticateNewUser').and.returnValue(true);
     spyOn(scope, 'hideCreateNewUserView').and.returnValue(true);
 
     scope.newuser = { usernamer: "user", password: "password", firstname: "name", lastname: "lastname", picture: "blablabla" };
@@ -188,7 +188,7 @@ describe('docsys-phonegap.home module', function () {
   it("should call post when a user gets created", function () {
     spyOn(mockUserBackendApi, 'save').and.callThrough();
     spyOn(mockFileTransferServices, 'uploadPicture').and.returnValue(true);
-    spyOn(mockAuthenticationServices, 'autehnticateNewUser').and.returnValue(true);
+    spyOn(mockAuthenticationServices, 'authenticateNewUser').and.returnValue(true);
     spyOn(scope, 'hideCreateNewUserView').and.returnValue(true);
 
     scope.newuser = { usernamer: "user", password: "password", firstname: "name", lastname: "lastname", picture: "blablabla" };

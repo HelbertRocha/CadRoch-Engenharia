@@ -3,7 +3,8 @@
 angular.module('docsys-phonegap', [
   'ionic',
   'ngCordova',
-  'ngResource'
+  'ngResource',
+  'pascalprecht.translate'
   ])
 
   .run(function($ionicPlatform) {
@@ -22,6 +23,6 @@ angular.module('docsys-phonegap', [
     });
   })
 
-  .config(['$urlRouterProvider', function($urlRouterProvider) {
+  .config(['$urlRouterProvider', '$translateProvider', function($urlRouterProvider, $translateProvider) {
     $urlRouterProvider.otherwise('/');
   }]);

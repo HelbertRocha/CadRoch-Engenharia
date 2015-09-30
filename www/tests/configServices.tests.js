@@ -26,8 +26,4 @@ describe('configServices test', function () {
     expect(baseUrl).toEqual('http://192.168.1.46/docsys/public/');
   });
 
-  it("should return camera settings as wanted", function () {
-    console.log(configServices.cameraOptions);
-  });
-
 });

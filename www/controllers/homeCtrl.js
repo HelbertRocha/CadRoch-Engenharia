@@ -47,7 +47,6 @@ angular.module('docsys-phonegap')
         $scope.profilePhotoTaken = false;
         initErrorMessages();
         createModalView();
-        console.log("calling init");
       };
 
       /**

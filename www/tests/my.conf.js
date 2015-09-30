@@ -22,6 +22,7 @@ module.exports = function(config) {
       '../lib/ionic/js/ionic.bundle.js',
       '../lib/ngCordova/dist/ng-cordova.js',
       '../lib/angular-resource/angular-resource.js',
+      '../lib/angular-translate/angular-translate.js',
 
       // main app
       '../app.js',

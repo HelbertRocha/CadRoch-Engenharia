@@ -38,7 +38,6 @@ describe('docsys-phonegap.home module', function () {
     mockGpsLocationServices = {
       getLocation: function () {
         //queryDeferred = $q.defer();
-        console.log("hello from mock");
         //return {$promise: queryDeferred.promise};
       }
     };
