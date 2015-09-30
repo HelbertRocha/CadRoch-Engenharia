@@ -15,11 +15,15 @@ angular.module('docsys-phonegap')
       });
   }])
 
-  .controller('SideMenuCtrl', ['$scope',
-    function ($scope) {
+  .controller('SideMenuCtrl', ['$scope', '$state',
+    function ($scope, $state) {
 
-      $scope.init = function () {
+      $scope.init = function() {
 
+      };
+
+      $scope.showSettings = function() {
+        $state.go('sidemenu.settings');
       };
 
       $scope.init();
