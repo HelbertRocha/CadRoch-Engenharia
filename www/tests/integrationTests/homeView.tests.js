@@ -11,13 +11,7 @@ describe('integration test of home view functionality', function() {
   });
 
   it("should have the correct url", function () {
-    expect(browser.getLocationAbsUrl()).toMatch('/');
-  });
-
-  it('should have Docsys as title', function() {
-
-    var title = element(by.className('title'));
-    expect(title.getText()).toContain('Docsys');
+    browser.get('http://localhost:8100/#/app/home');
   });
 
   it('should have a login text message', function() {

@@ -10,13 +10,7 @@ describe('integration test of activity view functionality', function() {
   var fakeuser = {username: "Username", password: "password", firstname: "firstname", lastname: "lastname"};
 
   beforeEach(function() {
-    browser.get('http://localhost:8100/#/activity');
-  });
-
-  it('should have Docsys as title', function() {
-
-    var title = element(by.className('title'));
-    expect(title.getText()).toContain('Activities');
+    browser.get('http://localhost:8100/#/app/activity');
   });
 
   it("should have the correct url", function () {
@@ -36,11 +30,11 @@ describe('integration test of activity view functionality', function() {
     expect(activityList.isDisplayed()).toBeTruthy();
   });
 
-  it("should have a logout btn", function () {
+  /*it("should have a logout btn", function () {
 
     var logoutBtn = element(by.id('logout'));
     expect(logoutBtn.isDisplayed()).toBeTruthy();
-  });
+  });*/
 
   it("should have four elements in the list", function () {
 
