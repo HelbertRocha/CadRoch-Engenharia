@@ -64,6 +64,9 @@ describe('docsys-phonegap.home module', function () {
     $httpBackend.whenGET('templates/homeView.html').respond(200, '');
     $httpBackend.whenGET('templates/activityView.html').respond(200, '');
     $httpBackend.whenGET('templates/createNewUserView.html').respond(200, '');
+    $httpBackend.whenGET('templates/sideMenuView.html').respond(200, '');
+    $httpBackend.whenGET('translations/local-en_US.json').respond(200, '');
+    $httpBackend.whenGET('translations/local-pt_BR.json').respond(200, '');
   }));
 
   it('should pass!', function () {

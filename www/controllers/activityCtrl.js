@@ -7,10 +7,14 @@ angular.module('docsys-phonegap')
 
   .config(['$stateProvider', function($stateProvider) {
     $stateProvider
-      .state('activity', {
+      .state('sidemenu.activity', {
         url: '/activity',
-        templateUrl: 'templates/activityView.html',
-        controller: 'ActivityCtrl'
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/activityView.html',
+            controller: 'ActivityCtrl'
+          }
+        }
       });
   }])
 

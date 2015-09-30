@@ -1,55 +1,56 @@
-<ion-header-bar class="bar bar-header bar-stable">
+<!--<ion-header-bar class="bar bar-header bar-stable">
   <button class="button button-clear" ng-click="logout()" id="logout">Logout</button>
   <h1 class="title">Activities</h1>
-</ion-header-bar>
+</ion-header-bar>-->
 
-<ion-content class="has-header" scroll="false">
+<ion-view view-title="Activity">
+  <ion-content class="has-header" scroll="false">
 
-  <div ng-if="user.username != undefined">
-  <div class="card" id="userInformation">
-    <div class="item item-avatar">
-      <img ng-src="{{ user.picture }}"/>
-      <p class="nameLabel"> {{ user.firstname }} {{ user.lastname }} </p>
-      <p> {{ date | date:'yyyy-dd-MM - HH:mm' }} </p>
-      <p> at work</p>
-    </div>
-  </div>
-  </div>
-
-  <div ng-if="user == false">
-    <div class="card" id="undefinedUserInformation">
+    <div ng-if="user.username != undefined">
+    <div class="card" id="userInformation">
       <div class="item item-avatar">
-        <img ng-src="http://www.wallstreetotc.com/wp-content/uploads/2014/10/facebook-anonymous-app.jpg"/>
-        <p class="nameLabel"> John Doe </p>
+        <img ng-src="{{ user.picture }}"/>
+        <p class="nameLabel"> {{ user.firstname }} {{ user.lastname }} </p>
         <p> {{ date | date:'yyyy-dd-MM - HH:mm' }} </p>
         <p> at work</p>
       </div>
     </div>
-  </div>
+    </div>
 
-  <div class="list card" id="activityList">
+    <div ng-if="user == false">
+      <div class="card" id="undefinedUserInformation">
+        <div class="item item-avatar">
+          <img ng-src="http://www.wallstreetotc.com/wp-content/uploads/2014/10/facebook-anonymous-app.jpg"/>
+          <p class="nameLabel"> John Doe </p>
+          <p> {{ date | date:'yyyy-dd-MM - HH:mm' }} </p>
+          <p> at work</p>
+        </div>
+      </div>
+    </div>
 
-    <a class="item item-icon-left" ng-click="logActivity('check in work')">
-      <i class="icon ion-ios-folder"></i>
-      Check in at work
-    </a>
+    <div class="list card" id="activityList">
 
-    <a class="item item-icon-left" ng-click="logActivity('check out lunch')">
-      <i class="icon ion-android-restaurant"></i>
-      Check out for lunch
-    </a>
+      <a class="item item-icon-left" ng-click="logActivity('check in work')">
+        <i class="icon ion-ios-folder"></i>
+        Check in at work
+      </a>
 
-    <a class="item item-icon-left" ng-click="logActivity('check in lunch')">
-      <i class="icon ion-android-time"></i>
-      Check in after lunch
-    </a>
+      <a class="item item-icon-left" ng-click="logActivity('check out lunch')">
+        <i class="icon ion-android-restaurant"></i>
+        Check out for lunch
+      </a>
 
-    <a class="item item-icon-left" ng-click="logActivity('check out work')">
-      <i class="icon ion-android-home"></i>
-      Check out from work
-    </a>
+      <a class="item item-icon-left" ng-click="logActivity('check in lunch')">
+        <i class="icon ion-android-time"></i>
+        Check in after lunch
+      </a>
 
-  </div>
+      <a class="item item-icon-left" ng-click="logActivity('check out work')">
+        <i class="icon ion-android-home"></i>
+        Check out from work
+      </a>
 
-</ion-content>
+    </div>
 
+  </ion-content>
+</ion-view>

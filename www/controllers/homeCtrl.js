@@ -7,10 +7,14 @@ angular.module('docsys-phonegap')
 
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'templates/homeView.html',
-        controller: 'HomeCtrl'
+      .state('sidemenu.home', {
+        url: '/home',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/homeView.html',
+            controller: 'HomeCtrl'
+          }
+        }
       });
   }])
 
@@ -23,6 +27,7 @@ angular.module('docsys-phonegap')
     '$cordovaCamera',
     '$ionicPlatform',
     '$translate',
+    '$ionicSideMenuDelegate',
     function ($scope,
               $ionicModal,
               authenticationServices,
@@ -31,7 +36,8 @@ angular.module('docsys-phonegap')
               $state,
               $cordovaCamera,
               $ionicPlatform,
-              $translate) {
+              $translate,
+              $ionicSideMenuDelegate) {
 
       /**
        * This function gets called when the controller get loaded into memory.
@@ -113,7 +119,7 @@ angular.module('docsys-phonegap')
             $scope.userList = userList;
             if (authenticationServices.isUserAuthenticated($scope.userList, $scope.user)) {
               $scope.userIsAuthorised = true;
-              $state.go('activity');
+              $state.go('sidemenu.activity');
               // @todo clear error msg with successful login
             } else {
               $scope.showErrorMessage("Username or password is not correct", false);
@@ -179,6 +185,17 @@ angular.module('docsys-phonegap')
       $scope.changeLanguage = function() {
         $translate.use('pt_BR');
       };
+
+      $scope.toggleSideMenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+      };
+
+      // With the new view caching in Ionic, Controllers are only called
+      // when they are recreated or on app start, instead of every page change.
+      // To listen for when this page is active (for example, to refresh data),
+      // listen for the $ionicView.enter event:
+      //$scope.$on('$ionicView.enter', function(e) {
+      //});
 
       $scope.init();
     }]);

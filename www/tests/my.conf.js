@@ -23,6 +23,7 @@ module.exports = function(config) {
       '../lib/ngCordova/dist/ng-cordova.js',
       '../lib/angular-resource/angular-resource.js',
       '../lib/angular-translate/angular-translate.js',
+      '../lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
 
       // main app
       '../app.js',

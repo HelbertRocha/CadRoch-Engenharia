@@ -24,7 +24,7 @@ angular.module('docsys-phonegap', [
   })
 
   .config(['$urlRouterProvider', '$translateProvider', function($urlRouterProvider, $translateProvider) {
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/app/home');
 
     /*Translation support*/
     $translateProvider.useStaticFilesLoader({

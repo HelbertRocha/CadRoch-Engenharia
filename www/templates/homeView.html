@@ -1,40 +1,41 @@
-<ion-header-bar class="bar bar-header bar-stable">
-  <h1 class="title">Docsys</h1>
-</ion-header-bar>
+<!--<ion-header-bar class="bar bar-header bar-stable">-->
+  <!--<button class="button icon button-clear ion-navicon-round" ng-click="toggleSideMenu()"></button>-->
+  <!--<h1 class="title">Docsys</h1>-->
+<!--</ion-header-bar>-->
 
+<ion-view view-title="Docsys">
+  <ion-content class="has-header" scroll="false">
 
-<ion-content class="has-header" scroll="false">
+    <h1 id="loginText">Login</h1>
 
-  <h1 id="loginText">Login</h1>
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Name" id="name" ng-model="user.username">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="Password" id="password" ng-model="user.password">
+      </label>
+    </div>
 
-  <div class="list">
-    <label class="item item-input">
-      <input type="text" placeholder="Name" id="name" ng-model="user.username">
-    </label>
-    <label class="item item-input">
-      <input type="password" placeholder="Password" id="password" ng-model="user.password">
-    </label>
-  </div>
+    <div ng-hide="hideErrorMessage" class="ng-hide">
+      <p id="errorMessage" style="color: red">{{ errorMessage }}</p>
+    </div>
 
-  <div ng-hide="hideErrorMessage" class="ng-hide">
-    <p id="errorMessage" style="color: red">{{ errorMessage }}</p>
-  </div>
+    <div ng-hide="hideSuccessMessage" class="ng-hide">
+      <p id="successMessage" style="color: green">{{ successMessage }}</p>
+    </div>
 
-  <div ng-hide="hideSuccessMessage" class="ng-hide">
-    <p id="successMessage" style="color: green">{{ successMessage }}</p>
-  </div>
+    <button class="button button-full button-positive" id="loginButton" ng-click="logIn()">
+      Login
+    </button>
 
-  <button class="button button-full button-positive" id="loginButton" ng-click="logIn()">
-    Login
-  </button>
+    <button translate="newUserBtn" class="button button-full button-positive" id="newUserButton" ng-click="showCreateNewUserView()">
+      New user
+    </button>
 
-  <button translate="newUserBtn" class="button button-full button-positive" id="newUserButton" ng-click="showCreateNewUserView()">
-    New user
-  </button>
+    <button class="button button-full button-positive" ng-click="changeLanguage()">
+      Change language
+    </button>
 
-  <button class="button button-full button-positive" ng-click="changeLanguage()">
-    Change language
-  </button>
-
-</ion-content>
-
+  </ion-content>
+</ion-view>
