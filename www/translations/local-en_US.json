@@ -1,5 +1,8 @@
 {
-  "homeViewNewUserBtn": "New user",
+  "homeViewNewUserBtn" : "New user",
+  "homeViewLoginBtn" : "Login",
+  "homeViewPassword" : "Password",
+  "homeViewUsername" : "Username",
 
   "settingsViewLanguages" : "Languages",
   "settingsViewEnglish": "English",

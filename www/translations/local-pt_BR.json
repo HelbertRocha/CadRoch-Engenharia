@@ -1,5 +1,10 @@
 {
   "homeViewNewUserBtn": "Novo user",
+  "homeViewLoginBtn" : "Login",
+  "homeViewPassword" : "Senha",
+  "homeViewUsername" : "Username",
 
-  "settingsViewLanguages" : "Línguas"
+  "settingsViewLanguages" : "Línguas",
+  "settingsViewEnglish": "English",
+  "settingsViewPortuguese" : "Portuguese"
 }
