@@ -25,4 +25,11 @@ angular.module('docsys-phonegap', [
 
   .config(['$urlRouterProvider', '$translateProvider', function($urlRouterProvider, $translateProvider) {
     $urlRouterProvider.otherwise('/');
+
+    /*Translation support*/
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'translations/local-',
+      suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('en_US');
   }]);

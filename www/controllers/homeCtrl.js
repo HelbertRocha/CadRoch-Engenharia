@@ -22,6 +22,7 @@ angular.module('docsys-phonegap')
     '$state',
     '$cordovaCamera',
     '$ionicPlatform',
+    '$translate',
     function ($scope,
               $ionicModal,
               authenticationServices,
@@ -29,7 +30,8 @@ angular.module('docsys-phonegap')
               fileTransferServices,
               $state,
               $cordovaCamera,
-              $ionicPlatform) {
+              $ionicPlatform,
+              $translate) {
 
       /**
        * This function gets called when the controller get loaded into memory.
@@ -172,6 +174,10 @@ angular.module('docsys-phonegap')
           });
 
         });
+      };
+
+      $scope.changeLanguage = function() {
+        $translate.use('pt_BR');
       };
 
       $scope.init();
