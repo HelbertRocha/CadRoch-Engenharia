@@ -22,11 +22,21 @@ angular.module('docsys-phonegap')
     function ($scope, $translate) {
 
       $scope.init = function () {
-
+        $scope.englishActivated = true;
+        $scope.protugueseActivated = false;
       };
 
       $scope.changeLanguage = function(lang) {
         console.log("changing languages to: " + lang);
+
+        if(lang == "en_US") {
+          $scope.englishActivated = true;
+          $scope.protugueseActivated = false;
+        } else {
+          $scope.protugueseActivated = true;
+          $scope.englishActivated = false;
+        }
+
         $translate.use(lang);
       };
 

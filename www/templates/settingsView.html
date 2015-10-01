@@ -12,13 +12,17 @@
         Languages
       </div>
 
-      <a class="item" ng-click="changeLanguage('en_US')" translate="settingsViewEnglish">
+      <a class="item item-icon-right" ng-click="changeLanguage('en_US')" id="englishSelectionBtn">
         English
-        <i class="icon ion-checkmark-round"></i>
+        <div ng-if="englishActivated" class="englishSelection">
+          <i class="icon ion-android-done"></i>
+        </div>
       </a>
-      <a class="item" ng-click="changeLanguage('pt_BR')" translate="settingsViewPortuguese">
+      <a class="item item-icon-right" ng-click="changeLanguage('pt_BR')" id="portugueseSelectionBtn">
         Portuguese
-        <i class="icon ion-ios-telephone-outline"></i>
+        <div ng-if="protugueseActivated" class="portugueseSelection">
+          <i class="icon ion-android-done"></i>
+        </div>
       </a>
     </ul>
 
