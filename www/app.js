@@ -31,5 +31,25 @@ angular.module('docsys-phonegap', [
       prefix: 'translations/local-',
       suffix: '.json'
     });
-    $translateProvider.preferredLanguage('en_US');
+    $translateProvider.preferredLanguage("en_US");
+
+  }])
+
+  .run(['$ionicPlatform', '$translate', '$cordovaGlobalization', function($ionicPlatform, $translate, $cordovaGlobalization) {
+    $ionicPlatform.ready(function() {
+      /*Checking for preferredLanguage on device*/
+      document.addEventListener("deviceready", function () {
+       $cordovaGlobalization.getPreferredLanguage().then(
+       function(result) {
+       if(result.value == "pt-BR") {
+         $translate.use("pt_BR");
+       } else {
+         console.log(result.value);
+         $translate.use("en_US");
+       }
+       });
+       }, false);
+    });
   }]);
+
+
