@@ -11,7 +11,8 @@ angular.module('docsys-phonegap')
       "password": null,
       "firstname": null,
       "lastname": null,
-      "picture": null
+      "picture": null,
+      "authorizationKey": null
     };
 
     return {
@@ -22,6 +23,7 @@ angular.module('docsys-phonegap')
         _user.firstname = user.firstname;
         _user.lastname = user.lastname;
         _user.picture = user.picture;
+        _user.authorizationKey = user.authorizationKey;
       },
 
       getUser: function() {

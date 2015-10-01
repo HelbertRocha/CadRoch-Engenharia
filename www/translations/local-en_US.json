@@ -4,6 +4,8 @@
   "homeViewPassword" : "Password",
   "homeViewUsername" : "Username",
 
+  "sideMenuViewSettings" : "Settings",
+
   "settingsViewLanguages" : "Languages",
   "settingsViewEnglish": "English",
   "settingsViewPortuguese" : "Portuguese"

@@ -33,7 +33,8 @@ describe('userServices test', function () {
       "password": 'faker',
       "firstname": 'faker',
       "lastname": 'faker',
-      "picture": 'faker'
+      "picture": 'faker',
+      "authorizationKey": 'fakeAuthorizationKey'
     };
 
     userServices.setUser(fakeUser);
