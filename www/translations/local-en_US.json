@@ -4,7 +4,14 @@
   "homeViewPassword" : "Password",
   "homeViewUsername" : "Username",
 
+  "sideMenuViewMenuTitle" : "Menu",
+  "sideMenuViewLogin" : "Login",
   "sideMenuViewSettings" : "Settings",
+
+  "activityViewCheckInWork" : "Check in at work",
+  "activityViewCheckOutLunch" : "Check out for lunch",
+  "activityViewCheckInLunch" : "Check in after lunch",
+  "activityViewCheckOutWork" : "Check out from work",
 
   "settingsViewLanguages" : "Languages",
   "settingsViewEnglish": "English",

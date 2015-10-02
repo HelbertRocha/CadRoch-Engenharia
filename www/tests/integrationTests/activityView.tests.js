@@ -32,14 +32,14 @@ describe('integration test of activity view functionality', function() {
 
   it("should have four elements in the list", function () {
 
-    element.all(by.className('item-icon-left')).then(function(items) {
+    element.all(by.className('activity')).then(function(items) {
       expect(items.length).toBe(4);
     });
   });
 
   it("should have four elements in the list", function () {
 
-    element.all(by.className('item-icon-left')).then(function(items) {
+    element.all(by.className('activity')).then(function(items) {
       expect(items[0].getText()).toBe('Check in at work');
       expect(items[1].getText()).toBe('Check out for lunch');
       expect(items[2].getText()).toBe('Check in after lunch');

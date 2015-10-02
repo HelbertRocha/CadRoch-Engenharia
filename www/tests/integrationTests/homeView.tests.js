@@ -7,10 +7,6 @@ describe('integration test of home view functionality', function() {
   var fakeuser = {username: "Username", password: "password", firstname: "firstname", lastname: "lastname"};
 
   beforeEach(function() {
-    browser.get('http://localhost:8100/#/');
-  });
-
-  it("should have the correct url", function () {
     browser.get('http://localhost:8100/#/app/home');
   });
 

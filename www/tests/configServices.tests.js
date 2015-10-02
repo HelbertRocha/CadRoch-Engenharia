@@ -23,7 +23,7 @@ describe('configServices test', function () {
   it("should return base url to server", function () {
     var baseUrl = configServices.baseUrl;
 
-    expect(baseUrl).toEqual('http://192.168.1.46/docsys/public/');
+    expect(baseUrl).toEqual('http://192.168.1.33/docsys/public/');
   });
 
 });
