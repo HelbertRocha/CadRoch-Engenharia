@@ -4,7 +4,7 @@
 
 'use strict';
 
-describe('docsys-phonegap.home module', function () {
+describe('docsys-phonegap.login module', function () {
 
   var scope, controller, mockAuthenticationServices, mockUserBackendApi, $q, $rootScope, queryDeferred, mockFileTransferServices;
   var fakeUser =
@@ -50,7 +50,7 @@ describe('docsys-phonegap.home module', function () {
       uploadPicture: function(path, picture) { }
     };
 
-      controller = $controller('HomeCtrl', {
+      controller = $controller('LoginCtrl', {
       $scope: scope,
       authenticationServices: mockAuthenticationServices,
       userBackendApi: mockUserBackendApi,
