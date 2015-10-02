@@ -11,5 +11,7 @@
     <orderEntry type="library" name="Angular" level="application" />
     <orderEntry type="library" name="jasmine-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="angular-protractor-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="jasmine-fixture-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="cordova-DefinitelyTyped" level="application" />
   </component>
 </module>

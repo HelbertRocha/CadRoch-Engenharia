@@ -118,32 +118,6 @@ describe('docsys-phonegap.login module', function () {
   });
 
   it("should authorize the user if the password and username is correct", function () {
-    spyOn(mockAuthenticationServices, 'isUserAuthenticated').and.returnValue(true);
-    scope.user.username = "fakeUser0";
-    scope.user.password = "password";
-
-    scope.logIn();
-
-    queryDeferred.resolve(fakeUser);
-    scope.$digest();
-
-    expect(scope.userIsAuthorised).toEqual(true);
-  });
-
-  it("should authorize the user if the password and username is correct", function () {
-    spyOn(mockAuthenticationServices, 'isUserAuthenticated').and.returnValue(false);
-    scope.user.username = "badUser";
-    scope.user.password = "badPassword";
-
-    scope.logIn();
-
-    queryDeferred.resolve(fakeUser);
-    scope.$digest();
-
-    expect(scope.userIsAuthorised).toEqual(false);
-  });
-
-  it("should authorize the user if the password and username is correct", function () {
     spyOn(mockAuthenticationServices, 'isUserAuthenticated');
     scope.user.username = "fakeUser0";
     scope.user.password = "password";
@@ -166,7 +140,7 @@ describe('docsys-phonegap.login module', function () {
     expect(mockUserBackendApi.save).not.toHaveBeenCalled();
   });
 
-  it("should not create post when new user info is not filled out", function () {
+  it("should not create post when new user info is not completely filled out", function () {
     spyOn(mockUserBackendApi, 'save').and.callThrough();
 
     scope.newuser = { usernamer: "user", firstname: "name", lastname: "lastname" };

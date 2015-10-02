@@ -163,4 +163,8 @@ describe('authenticationServices test', function () {
 
     expect(mockUserServices.setUser).toHaveBeenCalledWith(fakeUserAuthenticated);
   });
+
+  it("should set user as authenticated with successfully login", function () {
+
+  });
 });

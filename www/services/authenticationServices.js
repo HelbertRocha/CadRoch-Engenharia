@@ -5,7 +5,7 @@
 
 angular.module('docsys-phonegap')
 
-  .factory('authenticationServices', [ 'userServices', function(userServices) {
+  .factory('authenticationServices', [ 'userBackendApi', 'userServices', function(userBackendApi ,userServices) {
 
     /**
      * This function checks with the backend if the user is authenticated.

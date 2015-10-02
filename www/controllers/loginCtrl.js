@@ -116,7 +116,7 @@ angular.module('docsys-phonegap')
           userBackendApi.query().$promise.then(function(userList) {
             $scope.userList = userList;
             if (authenticationServices.isUserAuthenticated($scope.userList, $scope.user)) {
-              $scope.userIsAuthorised = true;
+              //$scope.userIsAuthorised = true;
               $state.go('sidemenu.activity');
               // @todo clear error msg with successful login
             } else {

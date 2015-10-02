@@ -15,6 +15,7 @@ angular.module('docsys-phonegap')
       "authorizationKey": null
     };
 
+    /*@todo save user to local storage here*/
     return {
       setUser: function(user) {
         _user.id = user.id;
