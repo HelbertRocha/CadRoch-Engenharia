@@ -61,7 +61,7 @@ describe('docsys-phonegap.home module', function () {
   var $httpBackend;
   beforeEach(inject(function($injector) {
     $httpBackend = $injector.get('$httpBackend');
-    $httpBackend.whenGET('templates/homeView.html').respond(200, '');
+    $httpBackend.whenGET('templates/loginView.html').respond(200, '');
     $httpBackend.whenGET('templates/activityView.html').respond(200, '');
     $httpBackend.whenGET('templates/createNewUserView.html').respond(200, '');
     $httpBackend.whenGET('templates/sideMenuView.html').respond(200, '');

@@ -7,18 +7,18 @@ angular.module('docsys-phonegap')
 
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
-      .state('sidemenu.home', {
-        url: '/home',
+      .state('sidemenu.login', {
+        url: '/login',
         views: {
           'menuContent': {
-            templateUrl: 'templates/homeView.html',
-            controller: 'HomeCtrl'
+            templateUrl: 'templates/loginView.html',
+            controller: 'LoginCtrl'
           }
         }
       });
   }])
 
-  .controller('HomeCtrl', ['$scope',
+  .controller('LoginCtrl', ['$scope',
     '$ionicModal',
     'authenticationServices',
     'userBackendApi',
@@ -79,7 +79,7 @@ angular.module('docsys-phonegap')
       $scope.showCreateNewUserView = function () {
         $scope.createNewUserView.show();
 
-        // Clearing possible error messages on home view
+        // Clearing possible error messages on login view
         $scope.showErrorMessage("", false);
         $scope.hideErrorMessage = true;
       };
@@ -88,7 +88,7 @@ angular.module('docsys-phonegap')
         $scope.createNewUserView.hide();
 
         // @todo should clear all text fields on exit
-        // Clearing possible error messages on home view
+        // Clearing possible error messages on login view
         $scope.showErrorMessage("", true);
         $scope.modalHideErrorMessage = true;
       };
