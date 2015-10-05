@@ -27,8 +27,6 @@ angular.module('docsys-phonegap')
       };
 
       $scope.changeLanguage = function(lang) {
-        console.log("changing languages to: " + lang);
-
         if(lang == "en_US") {
           $scope.englishActivated = true;
           $scope.protugueseActivated = false;

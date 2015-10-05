@@ -12,13 +12,13 @@
     </style>
 </head>
 <body>
-<div class="header low">
+<div class="header high">
     <h1>Code coverage report for <span class="entity">services/authenticationServices.js</span></h1>
     <h2>
-        Statements: <span class="metric">7.69% <small>(1 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">0% <small>(0 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">7.69% <small>(1 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(1 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(1 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">services/</a> &#187; authenticationServices.js</div>
@@ -70,8 +70,7 @@
 43
 44
 45
-46
-47</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+46</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -88,30 +87,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,7 +122,7 @@
 &nbsp;
 angular.module('docsys-phonegap')
 &nbsp;
-  .factory('authenticationServices', [ 'userBackendApi', 'userServices', 'loginBackendApi', <span class="fstat-no" title="function not covered" >function(userBackendApi ,userServices, loginBackendApi) {</span>
+  .factory('authenticationServices', [ <span class="fstat-no" title="function not covered" >function() {</span>
 &nbsp;
     /**
      * This function checks with the backend if the user is authenticated.
@@ -134,33 +132,32 @@ angular.module('docsys-phonegap')
      * @param picture
      * @returns {boolean} true if authenticated / false if not authenticated
      */
-<span class="cstat-no" title="statement not covered" >    var isUserAuthenticated = <span class="fstat-no" title="function not covered" >function(user) {</span></span>
-<span class="cstat-no" title="statement not covered" >      var result = false;</span>
-<span class="cstat-no" title="statement not covered" >      var userIsFound = false;</span>
+    /*var isUserAuthenticated = function(user) {
+      var result = false;
+      var userIsFound = false;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      loginBackendApi.save(user).$promise.then(<span class="fstat-no" title="function not covered" >function(responde) {</span></span>
+      loginBackendApi.save(user).$promise.then(function(responde) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if(!responde.error) {</span>
-          /*Set user*/
-<span class="cstat-no" title="statement not covered" >          result = true;</span>
+        if(!responde.error) {
+          /!*Set user*!/
+          result = true;
         }
       });
-<span class="cstat-no" title="statement not covered" >      return result;</span>
-    };
+      return result;
+    };*/
 &nbsp;
-    // @todo add better authentication here
-<span class="cstat-no" title="statement not covered" >    var authenticateNewUser = <span class="fstat-no" title="function not covered" >function(user) {</span></span>
-<span class="cstat-no" title="statement not covered" >      if(user.username &amp;&amp; user.password &amp;&amp; user.name &amp;&amp; user.lastname)</span>
+   /* var authenticateNewUser = function(user) {
+      if(user.username &amp;&amp; user.password &amp;&amp; user.name &amp;&amp; user.lastname)
       {
-<span class="cstat-no" title="statement not covered" >        return true;</span>
+        return true;
       }
-<span class="cstat-no" title="statement not covered" >      return false;</span>
+      return false;
     };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return {</span>
+    return {
       isUserAuthenticated: isUserAuthenticated,
       authenticateNewUser: authenticateNewUser
-    };
+    };*/
 &nbsp;
   }]);
 &nbsp;</pre></td></tr>
@@ -168,7 +165,7 @@ angular.module('docsys-phonegap')
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Oct 05 2015 14:54:06 GMT-0300 (BRT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Oct 05 2015 16:23:47 GMT-0300 (BRT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

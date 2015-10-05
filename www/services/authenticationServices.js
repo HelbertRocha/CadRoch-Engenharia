@@ -5,7 +5,7 @@
 
 angular.module('docsys-phonegap')
 
-  .factory('authenticationServices', [ 'userBackendApi', 'userServices', 'loginBackendApi', function(userBackendApi ,userServices, loginBackendApi) {
+  .factory('authenticationServices', [ function() {
 
     /**
      * This function checks with the backend if the user is authenticated.
@@ -15,22 +15,21 @@ angular.module('docsys-phonegap')
      * @param picture
      * @returns {boolean} true if authenticated / false if not authenticated
      */
-    var isUserAuthenticated = function(user) {
+    /*var isUserAuthenticated = function(user) {
       var result = false;
       var userIsFound = false;
 
       loginBackendApi.save(user).$promise.then(function(responde) {
 
         if(!responde.error) {
-          /*Set user*/
+          /!*Set user*!/
           result = true;
         }
       });
       return result;
-    };
+    };*/
 
-    // @todo add better authentication here
-    var authenticateNewUser = function(user) {
+   /* var authenticateNewUser = function(user) {
       if(user.username && user.password && user.name && user.lastname)
       {
         return true;
@@ -41,6 +40,6 @@ angular.module('docsys-phonegap')
     return {
       isUserAuthenticated: isUserAuthenticated,
       authenticateNewUser: authenticateNewUser
-    };
+    };*/
 
   }]);

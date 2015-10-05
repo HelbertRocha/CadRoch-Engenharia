@@ -20,7 +20,6 @@ angular.module('docsys-phonegap')
 
   .controller('LoginCtrl', ['$scope',
     '$ionicModal',
-    'authenticationServices',
     'userBackendApi',
     'fileTransferServices',
     '$state',
@@ -31,7 +30,6 @@ angular.module('docsys-phonegap')
     'userServices',
     function ($scope,
               $ionicModal,
-              authenticationServices,
               userBackendApi,
               fileTransferServices,
               $state,
@@ -117,18 +115,8 @@ angular.module('docsys-phonegap')
        */
       $scope.logIn = function () {
         if ($scope.user.username && $scope.user.password) {
-          //userBackendApi.query().$promise.then(function(userList) {
-          //  $scope.userList = userList;
-          /*  if (authenticationServices.isUserAuthenticated($scope.user)) {
-              $state.go('sidemenu.activity');
-              // @todo clear error msg with successful login
-            } else {
-              $scope.showErrorMessage("Username or password is not correct", false);
-            }
-          //})*/
-
           loginBackendApi.save($scope.user).$promise.then(function(responde) {
-
+            // @todo clear error msg with successful login
             if(!responde.error) {
               userServices.setUser(responde);
               $state.go('sidemenu.activity');
@@ -150,7 +138,7 @@ angular.module('docsys-phonegap')
        */
       $scope.createNewUser = function () {
           // @todo check if user has taken a profile picture and upload picture here!
-        if (authenticationServices.authenticateNewUser($scope.newuser)) {
+        if ($scope.newuser.username && $scope.newuser.password) {
             userBackendApi.save($scope.newuser);
             $scope.hideCreateNewUserView();
             $scope.hideSuccessMessage = false;

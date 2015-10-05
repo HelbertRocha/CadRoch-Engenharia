@@ -3,14 +3,10 @@
  */
 'use strict';
 
-describe('docsys-phonegap.home module', function () {
+describe('docsys-phonegap.activity controller', function () {
 
   var scope, controller, mockUserServices, fakeUserAuthenticated, mockGpsLocationServices;
   var $q, queryDeferred;
-
-  var fakeGpsLocation = {
-
-  };
 
   fakeUserAuthenticated = {
     "id": 0,
