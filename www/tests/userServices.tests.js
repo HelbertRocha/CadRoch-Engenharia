@@ -27,19 +27,15 @@ describe('userServices test', function () {
 
   it("should return the user if user has been set", function () {
 
-    var fakeUser = {
-      "id": '5',
-      "username": 'faker',
-      "password": 'faker',
-      "firstname": 'faker',
-      "lastname": 'faker',
-      "picture": 'faker',
-      "authorizationKey": 'fakeAuthorizationKey'
+    var fakeUserFromServer = {
+      "id_usuario": '5',
+      "nome_usuario": 'faker',
+      "email_usuario" : 'fake',
+      "authorization_key": 'fakeAuthorizationKey'
     };
 
-    userServices.setUser(fakeUser);
-
-    expect(userServices.getUser()).toEqual(fakeUser);
+    userServices.setUser(fakeUserFromServer);
+    expect(userServices.getUser().username).toEqual('faker');
   });
 
 });

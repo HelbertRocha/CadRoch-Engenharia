@@ -8,27 +8,21 @@ angular.module('docsys-phonegap')
     var _user = {
       "id": null,
       "username": null,
-      "password": null,
-      "firstname": null,
-      "lastname": null,
-      "picture": null,
+      "email": null,
       "authorizationKey": null
     };
 
     /*@todo save user to local storage here*/
     return {
       setUser: function(user) {
-        _user.id = user.id;
-        _user.username = user.username;
-        _user.password = user.password;
-        _user.firstname = user.firstname;
-        _user.lastname = user.lastname;
-        _user.picture = user.picture;
-        _user.authorizationKey = user.authorizationKey;
+        _user.id = user.id_usuario;
+        _user.username = user.nome_usuario;
+        _user.email = user.email_usuario;
+        _user.authorizationKey = user.authorization_key;
       },
 
       getUser: function() {
-        if(_user["username"] != null)
+        if(_user.username != null)
           return _user;
 
         return false;

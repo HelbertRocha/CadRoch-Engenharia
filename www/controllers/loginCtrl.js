@@ -27,6 +27,8 @@ angular.module('docsys-phonegap')
     '$cordovaCamera',
     '$ionicPlatform',
     '$ionicSideMenuDelegate',
+    'loginBackendApi',
+    'userServices',
     function ($scope,
               $ionicModal,
               authenticationServices,
@@ -35,7 +37,9 @@ angular.module('docsys-phonegap')
               $state,
               $cordovaCamera,
               $ionicPlatform,
-              $ionicSideMenuDelegate) {
+              $ionicSideMenuDelegate,
+              loginBackendApi,
+              userServices) {
 
       /**
        * This function gets called when the controller get loaded into memory.
@@ -113,16 +117,27 @@ angular.module('docsys-phonegap')
        */
       $scope.logIn = function () {
         if ($scope.user.username && $scope.user.password) {
-          userBackendApi.query().$promise.then(function(userList) {
-            $scope.userList = userList;
-            if (authenticationServices.isUserAuthenticated($scope.userList, $scope.user)) {
-              //$scope.userIsAuthorised = true;
+          //userBackendApi.query().$promise.then(function(userList) {
+          //  $scope.userList = userList;
+          /*  if (authenticationServices.isUserAuthenticated($scope.user)) {
               $state.go('sidemenu.activity');
               // @todo clear error msg with successful login
             } else {
               $scope.showErrorMessage("Username or password is not correct", false);
             }
-          })
+          //})*/
+
+          loginBackendApi.save($scope.user).$promise.then(function(responde) {
+
+            if(!responde.error) {
+              userServices.setUser(responde);
+              $state.go('sidemenu.activity');
+            } else {
+              $scope.showErrorMessage(responde.message, false);
+            }
+
+          });
+
         } else {
           $scope.showErrorMessage("Please fill out username and password", false);
         }

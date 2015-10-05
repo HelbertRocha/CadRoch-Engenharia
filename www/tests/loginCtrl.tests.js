@@ -7,16 +7,7 @@
 describe('docsys-phonegap.login module', function () {
 
   var scope, controller, mockAuthenticationServices, mockUserBackendApi, $q, $rootScope, queryDeferred, mockFileTransferServices;
-  var fakeUser =
-    {
-      "id": 0,
-      "username": "fakeUser0",
-      "password": "password",
-      "firstname": "Frederick",
-      "lastname": "Pouros",
-      "picture": "https://s3.amazonaws.com/uifaces/faces/twitter/y2graphic/128.jpg",
-      "CPF": 252373492
-    };
+  var mockUserServices, mockLoginBackendApi, $httpBackend;
 
   beforeEach(module('ionic'));
   beforeEach(module('ui.router'));
@@ -36,29 +27,33 @@ describe('docsys-phonegap.login module', function () {
       authenticateNewUser: function(user) { }
     };
 
+    mockUserServices = {
+      setUser: function(user) { },
+      getUser: function() { }
+    };
+
     mockUserBackendApi = {
       query: function() {
         queryDeferred = $q.defer();
         return {$promise: queryDeferred.promise};
       },
-      save: function () {
-
-      }
+      save: function() { }
     };
 
     mockFileTransferServices = {
       uploadPicture: function(path, picture) { }
     };
 
-      controller = $controller('LoginCtrl', {
+    controller = $controller('LoginCtrl', {
       $scope: scope,
       authenticationServices: mockAuthenticationServices,
       userBackendApi: mockUserBackendApi,
-      fileTransferServices: mockFileTransferServices
-      });
+      fileTransferServices: mockFileTransferServices,
+      userServices: mockUserServices,
+      loginBackendApi: mockLoginBackendApi
+    });
   }));
 
-  var $httpBackend;
   beforeEach(inject(function($injector) {
     $httpBackend = $injector.get('$httpBackend');
     $httpBackend.whenGET('templates/loginView.html').respond(200, '');
@@ -89,45 +84,6 @@ describe('docsys-phonegap.login module', function () {
 
     var errorMsg = "Please fill out username and password";
     expect(scope.errorMessage).toEqual(errorMsg);
-  });
-
-  it("should call query on UserBackendApi when user tries to login", function () {
-    spyOn(mockUserBackendApi, 'query').and.callThrough();
-    scope.user.username = "faker";
-    scope.user.password = "faker";
-
-    scope.logIn();
-
-    queryDeferred.resolve(fakeUser);
-    $rootScope.$apply();
-
-    expect(mockUserBackendApi.query).toHaveBeenCalled();
-  });
-
-  it("should call authenticationServices when user tries to login", function () {
-    spyOn(mockAuthenticationServices, 'isUserAuthenticated').and.callThrough();
-    scope.user.username = "faker";
-    scope.user.password = "faker";
-
-    scope.logIn();
-
-    queryDeferred.resolve(fakeUser);
-    scope.$digest();
-
-    expect(mockAuthenticationServices.isUserAuthenticated).toHaveBeenCalled();
-  });
-
-  it("should authorize the user if the password and username is correct", function () {
-    spyOn(mockAuthenticationServices, 'isUserAuthenticated');
-    scope.user.username = "fakeUser0";
-    scope.user.password = "password";
-
-    scope.logIn();
-
-    queryDeferred.resolve(fakeUser);
-    scope.$digest();
-
-    expect(mockAuthenticationServices.isUserAuthenticated).toHaveBeenCalledWith(fakeUser, scope.user);
   });
 
   it("should not create post when new user info is not filled out", function () {
