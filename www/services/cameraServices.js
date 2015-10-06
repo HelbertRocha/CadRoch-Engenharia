@@ -22,7 +22,7 @@ angular.module('docsys-phonegap')
     return {
 
       takePicture: function() {
-        return $cordovaCamera.getPicture(options);
+          return $cordovaCamera.getPicture(options);
       }
     };
 
