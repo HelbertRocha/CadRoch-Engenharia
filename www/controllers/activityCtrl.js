@@ -22,8 +22,6 @@ angular.module('docsys-phonegap')
      'userServices',
      'gpsLocationServices',
      'activityBackendApi',
-     '$ionicPlatform',
-     '$cordovaCamera',
      '$cordovaFileTransfer',
      '$ionicPopup',
      'fileTransferServices',
@@ -34,8 +32,6 @@ angular.module('docsys-phonegap')
                userServices,
                gpsLocationServices,
                activityBackendApi,
-               $ionicPlatform,
-               $cordovaCamera,
                $cordovaFileTransfer,
                $ionicPopup,
                fileTransferServices,
@@ -53,6 +49,13 @@ angular.module('docsys-phonegap')
       $scope.picture = "";
     };
 
+    function showSuccessPopup(activity) {
+      $ionicPopup.alert({
+        title: 'Success',
+        template: '<img src="http://www.hotelandairpromotion.com/img/success.png" style="display: block; margin-left: auto; margin-right: auto; width: 75px; height: 75px"><br/ >Your current status is now: ' + activity
+      });
+    };
+
     $scope.logout = function() {
       $state.go('home');
     };
@@ -60,40 +63,27 @@ angular.module('docsys-phonegap')
     $scope.logActivity = function(activity) {
       gpsLocationServices.getLocation().then(function(position) {
 
-        console.log('taking pic');
-          // @todo unit test getPicture function and add exception handling
-          cameraServices.takePicture().then(function (imageData) {
-            $scope.picture = "data:image/jpeg;base64," + imageData;
-            console.log('pic taken');
+        // @todo unit test getPicture function and add exception handling
+        cameraServices.takePicture().then(function (imageData) {
+          $scope.picture = "data:image/jpeg;base64," + imageData;
 
-            var pictureOptions = {
-              fileKey: "picture",
-              fileName: $scope.user.id + ".jpeg",
-              chunkedMode: false,
-              mimeType: "image/jpeg"
-            };
-            console.log('sending to server');
-            $cordovaFileTransfer.upload(configServices.baseUrl + configServices.pictureEndpoint, $scope.picture, pictureOptions)
-              .then(function(result) {
-                var filePath = result.response;
+          fileTransferServices.uploadPicture(configServices.pictureEndpoint, $scope.picture, $scope.user.id).then(function(result) {
+              var filePath = result.response;
 
-                var userData = {
-                  userID: $scope.user.id,
-                  activity: activity,
-                  picture_url: filePath,
-                  lat: position.coords.latitude,
-                  long: position.coords.longitude
-                };
+              var userData = {
+                userID: $scope.user.id,
+                activity: activity,
+                picture_url: filePath,
+                lat: position.coords.latitude,
+                long: position.coords.longitude
+              };
 
-                activityBackendApi.save(userData);
-                console.log('pic sent to server');
-                $ionicPopup.alert({
-                  title: 'Success',
-                  template: '<img src="http://www.hotelandairpromotion.com/img/success.png" style="display: block; margin-left: auto; margin-right: auto; width: 75px; height: 75px"><br/ >Your current status is now: ' + activity
-                });
-            }, function(err) {
-              // Error
-            });
+              activityBackendApi.save(userData);
+              console.log('pic sent to server');
+              showSuccessPopup(activity);
+          }, function(err) {
+            // Error
+          });
         });
       });
     };

@@ -4,7 +4,7 @@
 
 angular.module('docsys-phonegap')
 
-  .factory('cameraServices', ['$cordovaCamera', '$ionicPlatform', function($cordovaCamera, $ionicPlatform) {
+  .factory('cameraServices', ['$cordovaCamera', function($cordovaCamera) {
 
     var options = {
       quality: 100,

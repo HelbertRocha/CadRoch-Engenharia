@@ -12,13 +12,13 @@
     </style>
 </head>
 <body>
-<div class="header low">
+<div class="header medium">
     <h1>Code coverage report for <span class="entity">controllers/activityCtrl.js</span></h1>
     <h2>
-        Statements: <span class="metric">43.48% <small>(10 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">52.38% <small>(11 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">44.44% <small>(4 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">43.48% <small>(10 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">40% <small>(4 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">52.38% <small>(11 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">controllers/</a> &#187; activityCtrl.js</div>
@@ -117,17 +117,7 @@
 90
 91
 92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+93</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,14 +162,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-yes">8</span>
 <span class="cline-any cline-yes">8</span>
 <span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5</span>
@@ -189,21 +182,11 @@
 <span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -217,9 +200,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -253,8 +233,6 @@ angular.module('docsys-phonegap')
      'userServices',
      'gpsLocationServices',
      'activityBackendApi',
-     '$ionicPlatform',
-     '$cordovaCamera',
      '$cordovaFileTransfer',
      '$ionicPopup',
      'fileTransferServices',
@@ -265,8 +243,6 @@ angular.module('docsys-phonegap')
                userServices,
                gpsLocationServices,
                activityBackendApi,
-               $ionicPlatform,
-               $cordovaCamera,
                $cordovaFileTransfer,
                $ionicPopup,
                fileTransferServices,
@@ -284,6 +260,13 @@ angular.module('docsys-phonegap')
       $scope.picture = "";
     };
 &nbsp;
+<span class="fstat-no" title="function not covered" >    function showSuccessPopup(activity) {</span>
+<span class="cstat-no" title="statement not covered" >      $ionicPopup.alert({</span>
+        title: 'Success',
+        template: '&lt;img src="http://www.hotelandairpromotion.com/img/success.png" style="display: block; margin-left: auto; margin-right: auto; width: 75px; height: 75px"&gt;&lt;br/ &gt;Your current status is now: ' + activity
+      });
+    };
+&nbsp;
     $scope.logout = <span class="fstat-no" title="function not covered" >function() {</span>
 <span class="cstat-no" title="statement not covered" >      $state.go('home');</span>
     };
@@ -291,40 +274,27 @@ angular.module('docsys-phonegap')
     $scope.logActivity = function(activity) {
       gpsLocationServices.getLocation().then(<span class="fstat-no" title="function not covered" >function(position) {</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        console.log('taking pic');</span>
-          // @todo unit test getPicture function and add exception handling
-<span class="cstat-no" title="statement not covered" >          cameraServices.takePicture().then(<span class="fstat-no" title="function not covered" >function (imageData) {</span></span>
-<span class="cstat-no" title="statement not covered" >            $scope.picture = "data:image/jpeg;base64," + imageData;</span>
-<span class="cstat-no" title="statement not covered" >            console.log('pic taken');</span>
+        // @todo unit test getPicture function and add exception handling
+<span class="cstat-no" title="statement not covered" >        cameraServices.takePicture().then(<span class="fstat-no" title="function not covered" >function (imageData) {</span></span>
+<span class="cstat-no" title="statement not covered" >          $scope.picture = "data:image/jpeg;base64," + imageData;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            var pictureOptions = {</span>
-              fileKey: "picture",
-              fileName: $scope.user.id + ".jpeg",
-              chunkedMode: false,
-              mimeType: "image/jpeg"
-            };
-<span class="cstat-no" title="statement not covered" >            console.log('sending to server');</span>
-<span class="cstat-no" title="statement not covered" >            $cordovaFileTransfer.upload(configServices.baseUrl + configServices.pictureEndpoint, $scope.picture, pictureOptions)</span>
-              .then(<span class="fstat-no" title="function not covered" >function(result) {</span>
-<span class="cstat-no" title="statement not covered" >                var filePath = result.response;</span>
+<span class="cstat-no" title="statement not covered" >          fileTransferServices.uploadPicture(configServices.pictureEndpoint, $scope.picture, $scope.user.id).then(<span class="fstat-no" title="function not covered" >function(result) {</span></span>
+<span class="cstat-no" title="statement not covered" >              var filePath = result.response;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                var userData = {</span>
-                  userID: $scope.user.id,
-                  activity: activity,
-                  picture_url: filePath,
-                  lat: position.coords.latitude,
-                  long: position.coords.longitude
-                };
+<span class="cstat-no" title="statement not covered" >              var userData = {</span>
+                userID: $scope.user.id,
+                activity: activity,
+                picture_url: filePath,
+                lat: position.coords.latitude,
+                long: position.coords.longitude
+              };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                activityBackendApi.save(userData);</span>
-<span class="cstat-no" title="statement not covered" >                console.log('pic sent to server');</span>
-<span class="cstat-no" title="statement not covered" >                $ionicPopup.alert({</span>
-                  title: 'Success',
-                  template: '&lt;img src="http://www.hotelandairpromotion.com/img/success.png" style="display: block; margin-left: auto; margin-right: auto; width: 75px; height: 75px"&gt;&lt;br/ &gt;Your current status is now: ' + activity
-                });
-            }, <span class="fstat-no" title="function not covered" >function(err) {</span>
-              // Error
-            });
+<span class="cstat-no" title="statement not covered" >              activityBackendApi.save(userData);</span>
+<span class="cstat-no" title="statement not covered" >              console.log('pic sent to server');</span>
+<span class="cstat-no" title="statement not covered" >              showSuccessPopup(activity);</span>
+          }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+            // Error
+          });
         });
       });
     };
@@ -336,7 +306,7 @@ angular.module('docsys-phonegap')
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 06 2015 11:00:21 GMT-0300 (BRT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 06 2015 11:32:29 GMT-0300 (BRT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>
