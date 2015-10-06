@@ -79,7 +79,6 @@ angular.module('docsys-phonegap')
               };
 
               activityBackendApi.save(userData);
-              console.log('pic sent to server');
               showSuccessPopup(activity);
           }, function(err) {
             // Error

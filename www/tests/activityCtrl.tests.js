@@ -6,7 +6,7 @@
 describe('docsys-phonegap.activity controller', function () {
 
   var scope, controller, mockUserServices, fakeUserAuthenticated, mockGpsLocationServices;
-  var $q, queryDeferred, $rootScope, $httpBackend, mockCameraServices;
+  var $q, queryDeferred, $rootScope, $httpBackend, mockCameraServices, mockFileTransferServices;
 
   fakeUserAuthenticated = {
     "id": 0,
@@ -40,7 +40,14 @@ describe('docsys-phonegap.activity controller', function () {
     };
 
     mockCameraServices = {
-      getLocation: function () {
+      takePicture: function () {
+        queryDeferred = $q.defer();
+        return queryDeferred.promise;
+      }
+    };
+
+    mockFileTransferServices = {
+      uploadPicture: function () {
         queryDeferred = $q.defer();
         return queryDeferred.promise;
       }
@@ -50,7 +57,8 @@ describe('docsys-phonegap.activity controller', function () {
       $scope: scope,
       userServices: mockUserServices,
       gpsLocationServices: mockGpsLocationServices,
-      cameraServices: mockCameraServices
+      cameraServices: mockCameraServices,
+      fileTransferServices: mockFileTransferServices
     });
   }));
 
@@ -96,7 +104,6 @@ describe('docsys-phonegap.activity controller', function () {
     spyOn(mockGpsLocationServices, 'getLocation').and.callThrough();
 
     scope.logActivity();
-    //queryDeferred.resolve();
     $rootScope.$apply();
 
     expect(mockGpsLocationServices.getLocation).toHaveBeenCalled();
