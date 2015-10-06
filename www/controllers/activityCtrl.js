@@ -28,6 +28,7 @@ angular.module('docsys-phonegap')
      'configServices',
      '$state',
      'cameraServices',
+     '$ionicPlatform',
       function($scope,
                userServices,
                gpsLocationServices,
@@ -37,7 +38,8 @@ angular.module('docsys-phonegap')
                fileTransferServices,
                configServices,
                $state,
-               cameraServices) {
+               cameraServices,
+               $ionicPlatform) {
 
     /**
      * This function gets called when the controller get loaded into memory.
@@ -61,6 +63,7 @@ angular.module('docsys-phonegap')
     };
 
     $scope.logActivity = function(activity) {
+
       gpsLocationServices.getLocation().then(function(position) {
 
         // @todo unit test getPicture function and add exception handling

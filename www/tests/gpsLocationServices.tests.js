@@ -2,10 +2,6 @@
  * Created by Opstrup on 05/10/2015.
  */
 
-/**
- * Created by Opstrup on 05/10/2015.
- */
-
 describe('gspLocationServices test', function () {
 
   var gpsLocationServices;

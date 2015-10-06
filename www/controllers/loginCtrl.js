@@ -7,15 +7,11 @@ angular.module('docsys-phonegap')
 
   .config(['$stateProvider', function ($stateProvider) {
     $stateProvider
-      .state('sidemenu.login', {
+      .state('login', {
         url: '/login',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/loginView.html',
-            controller: 'LoginCtrl'
-          }
-        }
-      });
+        templateUrl: 'templates/loginView.html',
+        controller: 'LoginCtrl'
+        });
   }])
 
   .controller('LoginCtrl', ['$scope',
@@ -111,7 +107,6 @@ angular.module('docsys-phonegap')
        * authenticationServices to check if the given user is authenticated.
        * If the check passes it redirects the user to the activity screen else it shows the
        * "username or password is not correct".
-       * @todo make a error msg for unsuccessful GET request.
        */
       $scope.logIn = function () {
         if ($scope.user.username && $scope.user.password) {
@@ -123,9 +118,7 @@ angular.module('docsys-phonegap')
             } else {
               $scope.showErrorMessage(responde.message, false);
             }
-
           });
-
         } else {
           $scope.showErrorMessage("Please fill out username and password", false);
         }

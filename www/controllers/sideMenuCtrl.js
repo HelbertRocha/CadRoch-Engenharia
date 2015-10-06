@@ -23,7 +23,7 @@ angular.module('docsys-phonegap')
       };
 
       $scope.showLogin = function() {
-        $state.go('sidemenu.home')
+        $state.go('login')
       };
 
       $scope.showSettings = function() {

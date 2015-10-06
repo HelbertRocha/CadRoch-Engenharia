@@ -6,6 +6,7 @@
 
   "sideMenuViewMenuTitle" : "Menu",
   "sideMenuViewLogin" : "Login",
+  "sideMenuViewLogout" : "Logout",
   "sideMenuViewSettings" : "Settings",
 
   "activityViewCheckInWork" : "Check in at work",
