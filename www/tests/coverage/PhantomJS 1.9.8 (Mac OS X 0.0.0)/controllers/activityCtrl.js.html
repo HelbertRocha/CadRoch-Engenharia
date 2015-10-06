@@ -15,10 +15,10 @@
 <div class="header low">
     <h1>Code coverage report for <span class="entity">controllers/activityCtrl.js</span></h1>
     <h2>
-        Statements: <span class="metric">40.91% <small>(9 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">47.62% <small>(10 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">27.27% <small>(3 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">40.91% <small>(9 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">36.36% <small>(4 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">47.62% <small>(10 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">controllers/</a> &#187; activityCtrl.js</div>
@@ -132,18 +132,7 @@
 105
 106
 107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+108</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -190,6 +179,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-yes">8</span>
 <span class="cline-any cline-yes">8</span>
@@ -201,21 +192,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -292,6 +270,7 @@ angular.module('docsys-phonegap')
      'fileTransferServices',
      'configServices',
      '$state',
+     'cameraServices',
       function($scope,
                userServices,
                gpsLocationServices,
@@ -302,7 +281,8 @@ angular.module('docsys-phonegap')
                $ionicPopup,
                fileTransferServices,
                configServices,
-               $state) {
+               $state,
+               cameraServices) {
 &nbsp;
     /**
      * This function gets called when the controller get loaded into memory.
@@ -318,25 +298,12 @@ angular.module('docsys-phonegap')
 <span class="cstat-no" title="statement not covered" >      $state.go('home');</span>
     };
 &nbsp;
-    $scope.logActivity = <span class="fstat-no" title="function not covered" >function(activity) {</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      gpsLocationServices.getLocation().then(<span class="fstat-no" title="function not covered" >function(position) {</span></span>
-<span class="cstat-no" title="statement not covered" >        $ionicPlatform.ready(<span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >          var options = {</span>
-            quality: 100,
-            destinationType: Camera.DestinationType.DATA_URL,
-            sourceType: Camera.PictureSourceType.CAMERA,
-            allowEdit: false,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 600,
-            targetHeight: 600,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false,
-            correctOrientation: true
-          };
+    $scope.logActivity = function(activity) {
+      gpsLocationServices.getLocation().then(<span class="fstat-no" title="function not covered" >function(position) {</span>
+<span class="cstat-no" title="statement not covered" >        $ionicPlatform.ready(<span class="fstat-no" title="function not covered" >function() {</span></span>
 &nbsp;
           // @todo unit test getPicture function and add exception handling
-<span class="cstat-no" title="statement not covered" >          $cordovaCamera.getPicture(options).then(<span class="fstat-no" title="function not covered" >function (imageData) {</span></span>
+<span class="cstat-no" title="statement not covered" >          cameraServices.takePicture().then(<span class="fstat-no" title="function not covered" >function (imageData) {</span></span>
 <span class="cstat-no" title="statement not covered" >            $scope.picture = "data:image/jpeg;base64," + imageData;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            document.addEventListener('deviceready', <span class="fstat-no" title="function not covered" >function () {</span></span>
@@ -384,7 +351,7 @@ angular.module('docsys-phonegap')
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Oct 05 2015 16:23:47 GMT-0300 (BRT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 06 2015 09:54:52 GMT-0300 (BRT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

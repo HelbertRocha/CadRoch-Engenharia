@@ -29,6 +29,7 @@ angular.module('docsys-phonegap')
      'fileTransferServices',
      'configServices',
      '$state',
+     'cameraServices',
       function($scope,
                userServices,
                gpsLocationServices,
@@ -39,7 +40,8 @@ angular.module('docsys-phonegap')
                $ionicPopup,
                fileTransferServices,
                configServices,
-               $state) {
+               $state,
+               cameraServices) {
 
     /**
      * This function gets called when the controller get loaded into memory.
@@ -56,24 +58,11 @@ angular.module('docsys-phonegap')
     };
 
     $scope.logActivity = function(activity) {
-
       gpsLocationServices.getLocation().then(function(position) {
-        $ionicPlatform.ready(function () {
-          var options = {
-            quality: 100,
-            destinationType: Camera.DestinationType.DATA_URL,
-            sourceType: Camera.PictureSourceType.CAMERA,
-            allowEdit: false,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 600,
-            targetHeight: 600,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false,
-            correctOrientation: true
-          };
+        $ionicPlatform.ready(function() {
 
           // @todo unit test getPicture function and add exception handling
-          $cordovaCamera.getPicture(options).then(function (imageData) {
+          cameraServices.takePicture().then(function (imageData) {
             $scope.picture = "data:image/jpeg;base64," + imageData;
 
             document.addEventListener('deviceready', function () {

@@ -6,7 +6,7 @@
 
 describe('docsys-phonegap.login controller', function () {
 
-  var scope, controller, mockAuthenticationServices, mockUserBackendApi, $q, $rootScope, queryDeferred, mockFileTransferServices;
+  var scope, controller, mockUserBackendApi, $q, $rootScope, queryDeferred, mockFileTransferServices;
   var mockUserServices, mockLoginBackendApi, $httpBackend;
 
   beforeEach(module('ionic'));
@@ -21,8 +21,6 @@ describe('docsys-phonegap.login controller', function () {
 
   beforeEach(inject(function ($controller) {
     scope = $rootScope.$new();
-
-
 
     mockUserServices = {
       setUser: function(user) { },
@@ -102,29 +100,4 @@ describe('docsys-phonegap.login controller', function () {
     expect(mockUserBackendApi.save).not.toHaveBeenCalled();
   });
 
-  /*it("should call post when a user gets created", function () {
-    spyOn(mockUserBackendApi, 'save').and.callThrough();
-    spyOn(mockFileTransferServices, 'uploadPicture').and.returnValue(true);
-    spyOn(mockAuthenticationServices, 'authenticateNewUser').and.returnValue(true);
-    spyOn(scope, 'hideCreateNewUserView').and.returnValue(true);
-
-    scope.newuser = { usernamer: "user", password: "password", firstname: "name", lastname: "lastname", picture: "blablabla" };
-
-    scope.createNewUser();
-
-    expect(mockUserBackendApi.save).toHaveBeenCalled();
-  });
-
-  it("should call post when a user gets created", function () {
-    spyOn(mockUserBackendApi, 'save').and.callThrough();
-    spyOn(mockFileTransferServices, 'uploadPicture').and.returnValue(true);
-    spyOn(mockAuthenticationServices, 'authenticateNewUser').and.returnValue(true);
-    spyOn(scope, 'hideCreateNewUserView').and.returnValue(true);
-
-    scope.newuser = { usernamer: "user", password: "password", firstname: "name", lastname: "lastname", picture: "blablabla" };
-
-    scope.createNewUser();
-
-    expect(mockUserBackendApi.save).toHaveBeenCalledWith(scope.newuser);
-  });*/
 });
