@@ -6,3 +6,5 @@
   ## Mais essa linha para fazer o teste
 
   * comando git push 
+
+  *comando git pull  
